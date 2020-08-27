@@ -1,0 +1,6 @@
+com\suzhoukeleqi\Mapper\UserMapper.class
+com\suzhoukeleqi\entity\User.class
+com\suzhoukeleqi\MywebApplication.class
+com\suzhoukeleqi\ServiceImpl\UserServiceImpl.class
+com\suzhoukeleqi\Service\UserService.class
+com\suzhoukeleqi\Controller\WelcomeController.class

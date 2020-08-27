@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<th:block th:fragment="common_link">
+<!--<head th:fragment="common_header(title,links)">-->
+    <!--<title th:replace="${title}">The awesome application</title>-->
+
+    <!--共用的title-->
+    <title>苏州科乐奇</title>
+
+    <!-- 共用的jQuery,css,js -->
+    <script src="/webjars/jquery/1.9.1/jquery.min.js"></script>
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <!-- 额外添加的链接 -->
+<!--<th:block th:replace="${links}" />-->
+
+    <!--共用的JavaScript-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //html文件的路径名，如："/index/first"
+            var pathname = window.location.pathname;
+            //第二个斜杠"/"的位置，如："/index/first" 获得的位置是6
+            var secondSlashIndex = pathname.indexOf("/",1);
+            // console.log(secondSlashIndex);
+            //如果有第二个斜杠
+            if (secondSlashIndex>0){
+                // 使用两个斜杠中间的字符作为pathname
+                pathname = pathname.substr(1,secondSlashIndex-1);
+            }else{
+                //否则使用斜杠后面的字符作为pathname
+                pathname = pathname.substr(1,pathname.length-1);
+            }
+            // console.log(pathname);
+            // 激活相应的导航栏标签
+            $("#"+ pathname).addClass("active");
+
+
+
+        });
+    </script>
+</th:block>
+</head>
+
+<body>
+<!--导航栏-->
+<nav th:fragment="common_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">苏州科乐奇</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="test" class="margin-right-20"><a href="/test" data-target="/test">测试</a></li>
+
+                <li id="index" class="margin-right-20"><a href="/index">首页</a></li>
+                <li id="about" class="margin-right-20"><a href="/about">关于科乐奇</a></li>
+                <li id="product" class="dropdown margin-right-20">
+                    <a id="a3" href="/product" class="dropdown-toggle" data-toggle="dropdown">
+                        产品中心 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">颈枕</a></li>
+                        <li><a href="#">靠垫</a></li>
+                        <li><a href="#">沙发坐垫</a></li>
+                        <li><a href="#">玩具</a></li>
+                    </ul>
+                </li>
+                <li id="news" class="dropdown margin-right-20">
+                    <a href="/news" class="dropdown-toggle" data-toggle="dropdown">
+                        新闻中心 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">公司动态</a></li>
+                        <li><a href="#">行业资讯</a></li>
+                    </ul>
+                </li>
+                <li id="case" class="margin-right-20"><a href="/case">合作客户</a></li>
+                <li id="contact" class="margin-right-20"><a href="/contact">联系我们</a></li>
+                <li id="search" class="margin-right-20"><a href="/search"><span class="glyphicon glyphicon-search"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--轮播(旋转木马carousel)-->
+<div th:fragment="common_carousel" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="/img/pic1.jpg" >
+        </div>
+        <div class="item">
+            <img src="/img/pic2.jpg" >
+        </div>
+        <div class="item">
+            <img src="/img/pic3.jpg" >
+        </div>
+
+        <div class="item">
+            <img src="/img/pic4.jpg" >
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+    </a>
+
+</div>
+<!--页脚-->
+<nav th:fragment="common_footerNav" class="navbar navbar-default navbar-static-bottom">
+    <div style="text-align:center">
+        版权所有
+    </div>
+</nav>
+</body>
+</html>

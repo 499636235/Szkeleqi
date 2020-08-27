@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/fragments5/base :: common_header(~{::title},~{::link})">-->
+<head>
+    <meta charset="UTF-8">
+
+<!--thymeleaf代码块功能 导入共用link-->
+    <th:block th:replace="common :: common_link"></th:block>
+<!--导入样式表-->
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+<!--JavaScript-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#test").mouseover(function(){
+                // alert("!");
+                // $("#btn1").dropdown();
+            });
+            $("#dropdownMenu1").mouseover(function(){
+                alert("!");
+                $("#dropdownMenu1").show();
+            });
+        });
+    </script>
+</head>
+<body>
+<!--导航栏-->
+<th:block th:replace="common :: common_nav"></th:block>
+<!--轮播-->
+<th:block th:replace="common :: common_carousel"></th:block>
+<div class="picture-box">
+    <div class="container-fluid">
+        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom" data-repeat="false">
+
+            <h3>产品展示</h3>
+
+            <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
+
+        </div>
+        <div class="picture-list">
+            <ul class="blocks blocks-xs-2 blocks-md-4">
+
+                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
+                    <a title="常规颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=65">
+                        <p>
+                            <b></b>
+                            <i class="fa fa-search-plus"></i>
+                            <img data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">
+                        </p>
+                        <span>常规颈枕</span>
+
+                    </a>
+                </li>
+
+                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
+                    <a title="常规颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66">
+                        <p>
+                            <b></b>
+                            <i class="fa fa-search-plus"></i>
+                            <img data-original="include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500" src="/img/2.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">
+                        </p>
+                        <span>常规颈枕</span>
+
+                    </a>
+                </li>
+
+                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
+                    <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=56">
+                        <p>
+                            <b></b>
+                            <i class="fa fa-search-plus"></i>
+                            <img data-original="include/thumb.php?dir=upload/201805/1527696997.jpg&amp;x=500&amp;y=500" src="/img/3.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
+                        </p>
+                        <span>动物颈枕</span>
+
+                    </a>
+                </li>
+
+                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
+                    <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=64">
+                        <p>
+                            <b></b>
+                            <i class="fa fa-search-plus"></i>
+                            <img data-original="include/thumb.php?dir=upload/201805/1527696423.jpg&amp;x=500&amp;y=500" src="/img/4.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
+                        </p>
+                        <span>动物颈枕</span>
+
+                    </a>
+                </li>
+                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
+                    <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=64">
+                        <p>
+                            <b></b>
+                            <i class="fa fa-search-plus"></i>
+                            <img data-original="include/thumb.php?dir=upload/201805/1527696423.jpg&amp;x=500&amp;y=500" src="/img/5.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
+                        </p>
+                        <span>动物颈枕</span>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>
+
+</div>
+<!--页脚-->
+<th:block th:replace="common :: common_footerNav"></th:block>
+</body>
+</html>

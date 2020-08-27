@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/szklq?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: njytzj6B
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+#  devtools:
+#    restart:
+#      enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.suzhoukeleqi.entity
