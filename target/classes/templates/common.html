@@ -23,6 +23,13 @@
         $(document).ready(function(){
             //html文件的路径名，如："/index/first"
             var pathname = window.location.pathname;
+            // 如果是根目录"/"
+            if (pathname == "/"){
+                // 激活主页
+                $("#index").addClass("active");
+                console.log("欢迎访问苏州科乐奇工艺品有限公司的首页！");
+                return;
+            }
             //第二个斜杠"/"的位置，如："/index/first" 获得的位置是6
             var secondSlashIndex = pathname.indexOf("/",1);
             // console.log(secondSlashIndex);
@@ -63,10 +70,11 @@
                         产品中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">颈枕</a></li>
-                        <li><a href="#">靠垫</a></li>
-                        <li><a href="#">沙发坐垫</a></li>
-                        <li><a href="#">玩具</a></li>
+                        <li><a href="/product">全部产品</a></li>
+                        <li><a href="/product">颈枕</a></li>
+                        <li><a href="/product">靠垫</a></li>
+                        <li><a href="/product">沙发坐垫</a></li>
+                        <li><a href="/product">玩具</a></li>
                     </ul>
                 </li>
                 <li id="news" class="dropdown margin-right-20">
@@ -74,8 +82,8 @@
                         新闻中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">公司动态</a></li>
-                        <li><a href="#">行业资讯</a></li>
+                        <li><a href="/news">公司动态</a></li>
+                        <li><a href="/news">行业资讯</a></li>
                     </ul>
                 </li>
                 <li id="case" class="margin-right-20"><a href="/case">合作客户</a></li>
