@@ -55,3 +55,23 @@ div#carousel-example-generic{
     padding-left: 15px;
     margin-bottom: 22px;
 }
+.picture-box img{
+    width: 340px;
+    height: 340px;
+}
+.navbar-static-bottom{
+    background: #17171a;
+    line-height: 2;
+    padding: 20px 0;
+}
+.navbar-static-bottom a:hover {
+    color: #fff;
+    text-decoration:none;
+}
+.navbar-static-bottom a{
+    color: #888;
+}
+.navbar-static-bottom div{
+    text-align:center;
+    color:#888;
+}

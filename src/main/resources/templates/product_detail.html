@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/fragments5/base :: common_header(~{::title},~{::link})">-->
+<head>
+    <meta charset="UTF-8">
+
+    <!--thymeleaf代码块功能 导入共用link-->
+    <th:block th:replace="common :: common_link"></th:block>
+    <!--导入样式表-->
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+    <!--JavaScript-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#test").mouseover(function(){
+                // alert("!");
+                // $("#btn1").dropdown();
+            });
+            $("#dropdownMenu1").mouseover(function(){
+                alert("!");
+                $("#dropdownMenu1").show();
+            });
+        });
+    </script>
+</head>
+<body>
+<!--导航栏-->
+<th:block th:replace="common :: common_nav"></th:block>
+<!--轮播-->
+<th:block th:replace="common :: common_carousel"></th:block>
+<div>
+    <img src="/img/1.png" alt="">
+</div>
+
+<div>
+
+</div>
+<!--页脚-->
+<th:block th:replace="common :: common_footerNav"></th:block>
+</body>
+</html>

@@ -41,6 +41,11 @@ public class WelcomeController {
         return "product";
     }
 
+    @RequestMapping("/product/1.png")
+    public String goToProductDetail(String s){
+        return "product_detail";
+    }
+
     @RequestMapping("/news")
     public String goToNews(String s){
         return "news";
