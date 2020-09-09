@@ -64,12 +64,12 @@ div#carousel-example-generic{
     line-height: 2;
     padding: 20px 0;
 }
-.navbar-static-bottom a:hover {
-    color: #fff;
-    text-decoration:none;
-}
 .navbar-static-bottom a{
     color: #888;
+    text-decoration:none;
+}
+.navbar-static-bottom a:hover {
+    color: #fff;
 }
 .navbar-static-bottom div{
     text-align:center;
