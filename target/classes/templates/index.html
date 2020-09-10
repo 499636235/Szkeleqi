@@ -15,10 +15,22 @@
                 // alert("!");
                 // $("#btn1").dropdown();
             });
-            $("#dropdownMenu1").mouseover(function(){
-                alert("!");
-                $("#dropdownMenu1").show();
-            });
+            // $("#dropdownMenu1").mouseover(function(){
+            //     alert("!");
+            //     $("#dropdownMenu1").show();
+            // });
+            $("#product_ul").append(
+                "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" data-repeat=\"false\" class=\"animation-slide-bottom appear-no-repeat\">\n" +
+                "                    <a title=\"常规颈枕\" href=\"http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66\">\n" +
+                "                        <p>\n" +
+                "                            <b></b>\n" +
+                "                            <i class=\"fa fa-search-plus\"></i>\n" +
+                "                            <img data-original=\"include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500\" src=\"/img/2.png\" title=\"常规颈枕\" alt=\"常规颈枕\" style=\"display: inline;\">\n" +
+                "                        </p>\n" +
+                "                        <span>常规颈枕</span>\n" +
+                "                    </a>\n" +
+                "                </li>"
+            );
         });
     </script>
 </head>
@@ -37,7 +49,7 @@
 
         </div>
         <div class="picture-list">
-            <ul class="blocks blocks-xs-2 blocks-md-4">
+            <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
 
                 <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
                     <a title="常规颈枕" href="/product/1.png">
@@ -51,17 +63,17 @@
                     </a>
                 </li>
 
-                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
-                    <a title="常规颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66">
-                        <p>
-                            <b></b>
-                            <i class="fa fa-search-plus"></i>
-                            <img data-original="include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500" src="/img/2.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">
-                        </p>
-                        <span>常规颈枕</span>
+<!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
+<!--                    <a title="常规颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66">-->
+<!--                        <p>-->
+<!--                            <b></b>-->
+<!--                            <i class="fa fa-search-plus"></i>-->
+<!--                            <img data-original="include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500" src="/img/2.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
+<!--                        </p>-->
+<!--                        <span>常规颈枕</span>-->
 
-                    </a>
-                </li>
+<!--                    </a>-->
+<!--                </li>-->
 
                 <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
                     <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=56">
