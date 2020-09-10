@@ -12,33 +12,35 @@
     <script type="text/javascript">
         $(document).ready(function(){
             var xmlhttp;
-            if (window.XMLHttpRequest)
-            {// code for IE7+, Firefox, Chrome, Opera, Safari
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp=new XMLHttpRequest();
             }
-            else
-            {// code for IE6, IE5
+            else {// code for IE6, IE5
                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
             }
-            xmlhttp.open("GET","product_detail/1",true);
+            xmlhttp.open("GET","product_detail/" + [[${id}]],true);
             xmlhttp.send();
-            xmlhttp.onreadystatechange=function()
-            {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                {
-                    document.getElementById("divtest").innerHTML=xmlhttp.responseText;
+            console.log("product_detail/" + [[${id}]]);
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    $('#img1').attr("src", xmlhttp.responseText);
+                    console.log("加载图片成功！：" + xmlhttp.responseText);
                 }
+                // else{
+                //     console.log("加载图片失败！");
+                //     $('#img1').attr("src", "/img/error.jpg");
+                // }
+
             }
+
         });
     </script>
 </head>
 <body>
 <!--导航栏-->
 <th:block th:replace="common :: common_nav"></th:block>
-<!--轮播-->
-<th:block th:replace="common :: common_carousel"></th:block>
 <div id="divtest">
-    <img src="/img/1.png" alt="">
+    <img id="img1" src="/img/loading.gif" alt="">
 </div>
 
 <div>
