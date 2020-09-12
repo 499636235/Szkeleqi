@@ -3,6 +3,8 @@ package com.suzhoukeleqi.Controller;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.entity.IndexProduct;
 import net.sf.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,9 @@ public class WelcomeController {
     @Qualifier("productServiceImpl")
     ProductService productService;
 
-    //重定向到  /index
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    //把 "" 重定向到 "/index"
     @RequestMapping("")
     public String goToIndex() {
         return "redirect:/index";
@@ -32,38 +36,25 @@ public class WelcomeController {
 
     @RequestMapping("/index")
     public String goToIndex(ModelMap modelMap) {
-        StringBuilder stringBuilder = new StringBuilder();
         List<IndexProduct> indexProductList = productService.selectIndexProductList();
-//        List<IndexProduct> indexProductList = new ArrayList<>();
-//        indexProductList.add(productService.selectIndexProductList().get(0));
-//        for (IndexProduct indexProduct : indexProductList) {
-//            stringBuilder.append(
-//                    "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" class=\"animation-slide-bottom\">\n" +
-//                    "   <a href=\"/product/" + indexProduct.getProduct_id() + "\">\n" +
-//                    "       <p>\n" +
-//                    "           <img src=\"" + indexProduct.getPicture() + "\" alt=\""+ indexProduct.getName() + "\" style=\"display: inline;\">\n" +
-//                    "       </p>\n" +
-//                    "       <span>" + indexProduct.getName() + "</span>\n" +
-//                    "   </a>\n" +
-//                    "</li>");
-//        }
-        modelMap.addAttribute("indexProductList", JSONArray.fromObject(indexProductList).toString());
-//        modelMap.addAttribute("indexProductList", stringBuilder.toString());
+        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
+        modelMap.addAttribute("indexProductList", indexProductListJSONArray);
+//        logger.debug(indexProductListJSONArray);
         return "index";
     }
 
     @RequestMapping("/test")
-    public String goToTest(String s) {
+    public String goToTest() {
         return "test";
     }
 
     @RequestMapping("/about")
-    public String goToAbout(String s) {
+    public String goToAbout() {
         return "about";
     }
 
     @RequestMapping("/product")
-    public String goToProduct(String s) {
+    public String goToProduct() {
         return "product";
     }
 
@@ -74,22 +65,22 @@ public class WelcomeController {
     }
 
     @RequestMapping("/news")
-    public String goToNews(String s) {
+    public String goToNews() {
         return "news";
     }
 
     @RequestMapping("/case")
-    public String goToCase(String s) {
+    public String goToCase() {
         return "case";
     }
 
     @RequestMapping("/contact")
-    public String goToContact(String s) {
+    public String goToContact() {
         return "contact";
     }
 
     @RequestMapping("/search")
-    public String goToSearch(String s) {
+    public String goToSearch() {
         return "search";
     }
 
