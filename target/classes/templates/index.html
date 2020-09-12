@@ -11,26 +11,25 @@
 <!--JavaScript-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#test").mouseover(function(){
-                // alert("!");
-                // $("#btn1").dropdown();
-            });
-            // $("#dropdownMenu1").mouseover(function(){
-            //     alert("!");
-            //     $("#dropdownMenu1").show();
-            // });
-            $("#product_ul").append(
-                "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" data-repeat=\"false\" class=\"animation-slide-bottom appear-no-repeat\">\n" +
-                "                    <a title=\"常规颈枕\" href=\"http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66\">\n" +
-                "                        <p>\n" +
-                "                            <b></b>\n" +
-                "                            <i class=\"fa fa-search-plus\"></i>\n" +
-                "                            <img data-original=\"include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500\" src=\"/img/2.png\" title=\"常规颈枕\" alt=\"常规颈枕\" style=\"display: inline;\">\n" +
-                "                        </p>\n" +
-                "                        <span>常规颈枕</span>\n" +
-                "                    </a>\n" +
-                "                </li>"
-            );
+
+            var jsonStr="[[${indexProductList}]]".replace(new RegExp('&quot;',"gm"), '"' );
+            // console.log(jsonStr);
+            var jsonObject= JSON.parse(jsonStr);
+            // console.log(jsonObject);
+            for(var k in jsonObject ){  //遍历jsonObject 对象的每个key/value对,k为key
+                // console.log(k + " " + jsonObject[k].name);
+                $("#product_ul").append(
+                    "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" class=\"animation-slide-bottom\">\n" +
+                    "   <a href=\"/product/" + jsonObject[k].product_id + "\">\n" +
+                    "       <p>\n" +
+                    "           <img src=\"" + jsonObject[k].picture +  "\" alt=\"" + jsonObject[k].name + "\" style=\"display: inline;\">\n" +
+                    "       </p>\n" +
+                    "       <span>" + jsonObject[k].name + "</span>\n" +
+                    "   </a>\n" +
+                    "</li>"
+                );
+            }
+
         });
     </script>
 </head>
@@ -51,64 +50,26 @@
         <div class="picture-list">
             <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
 
-                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
-                    <a title="常规颈枕" href="/product/1.png">
-                        <p>
-                            <b></b>
-                            <i class="fa fa-search-plus"></i>
-                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">
-                        </p>
-                        <span>常规颈枕</span>
-
-                    </a>
-                </li>
-
 <!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
-<!--                    <a title="常规颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=66">-->
+<!--                    <a title="常规颈枕" href="/product/1.png">-->
 <!--                        <p>-->
 <!--                            <b></b>-->
 <!--                            <i class="fa fa-search-plus"></i>-->
-<!--                            <img data-original="include/thumb.php?dir=upload/201805/1527690287.jpg&amp;x=500&amp;y=500" src="/img/2.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
+<!--                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
 <!--                        </p>-->
 <!--                        <span>常规颈枕</span>-->
-
 <!--                    </a>-->
 <!--                </li>-->
 
-                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
-                    <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=56">
-                        <p>
-                            <b></b>
-                            <i class="fa fa-search-plus"></i>
-                            <img data-original="include/thumb.php?dir=upload/201805/1527696997.jpg&amp;x=500&amp;y=500" src="/img/3.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
-                        </p>
-                        <span>动物颈枕</span>
 
-                    </a>
-                </li>
-
-                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
-                    <a title="动物颈枕" href="http://szkeleqi.com/product/showproduct.php?lang=cn&amp;id=64">
-                        <p>
-                            <b></b>
-                            <i class="fa fa-search-plus"></i>
-                            <img data-original="include/thumb.php?dir=upload/201805/1527696423.jpg&amp;x=500&amp;y=500" src="/img/4.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
-                        </p>
-                        <span>动物颈枕</span>
-
-                    </a>
-                </li>
-                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">
-                    <a title="动物颈枕" href="/product/1">
-                        <p>
-                            <b></b>
-                            <i class="fa fa-search-plus"></i>
-                            <img data-origi nal="include/thumb.php?dir=upload/201805/1527696423.jpg&amp;x=500&amp;y=500" src="/img/5.png" title="动物颈枕" alt="动物颈枕" style="display: inline;">
-                        </p>
-                        <span>动物颈枕</span>
-
-                    </a>
-                </li>
+<!--                <li data-plugin="appear" data-animate="slide-bottom" class="animation-slide-bottom">-->
+<!--                    <a href="/product/1">-->
+<!--                        <p>-->
+<!--                            <img src="/img/1.jpg" alt="Conventional Neck Pillow #1" style="display: inline;">-->
+<!--                        </p>-->
+<!--                        <span>Conventional Neck Pillow #1</span>-->
+<!--                    </a>-->
+<!--                </li>-->
             </ul>
         </div>
     </div>

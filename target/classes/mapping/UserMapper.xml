@@ -10,7 +10,7 @@
     </resultMap>
 
     <select id="selectUser" resultType="com.suzhoukeleqi.entity.User">
-        select * from user where id = #{id}
+        select * from szklq.user where id = #{id}
     </select>
 
 </mapper>

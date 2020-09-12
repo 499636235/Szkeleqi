@@ -15,4 +15,22 @@
         select * from product where id = #{id}
     </select>
 
+    <resultMap id="IndexProductResultMap" type="com.suzhoukeleqi.entity.IndexProduct">
+        <result column="priority" jdbcType="INTEGER" property="priority" />
+        <result column="product_id" jdbcType="INTEGER" property="product_id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+    </resultMap>
+
+    <select id="selectIndexProductList" resultType="com.suzhoukeleqi.entity.IndexProduct">
+        select
+            a.priority,
+            a.product_id,
+            b.name,
+            b.picture
+        from index_product_list a
+            left join product b
+                on a.product_id = b.id
+        order by priority asc ;
+    </select>
 </mapper>
