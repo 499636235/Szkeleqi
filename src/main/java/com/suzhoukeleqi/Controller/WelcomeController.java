@@ -1,5 +1,6 @@
 package com.suzhoukeleqi.Controller;
 
+import com.suzhoukeleqi.Service.IMailService;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.entity.IndexProduct;
 import net.sf.json.JSONArray;
@@ -25,6 +26,12 @@ public class WelcomeController {
     @Autowired
     @Qualifier("productServiceImpl")
     ProductService productService;
+
+    /**
+     * 注入发送邮件的接口
+     */
+    @Autowired
+    private IMailService mailService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -90,4 +97,14 @@ public class WelcomeController {
 //        User user = userService.selectUser(id);
 //        return user.toString();
 //    }
+
+    @RequestMapping("/testmail")
+    public void sendmail() {
+        mailService.sendSimpleMail("499636235@qq.com","主题：你好普通邮件","内容：第一封邮件");
+    }
+
+    @RequestMapping("/testhtmlmail")
+    public void sendmailHtml(){
+        mailService.sendHtmlMail("499636235@qq.com","主题：你好html邮件","<h1>内容：第一封html邮件</h1>");
+    }
 }
