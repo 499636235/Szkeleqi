@@ -1,3 +1,9 @@
+
+# 部署方法见: https://blog.csdn.net/zhangcc233/article/details/96706157
+# 创建mysql容器: docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=njytzj6B mysql:5.5
+# 删除mysql容器: docker rm -f mysql
+# 创建springboot: docker run -it --net=host --name szkeleqi -p 8186:8186 szkeleqi
+# 删除mysql容器: docker rm -f szkeleqi
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,11 +18,14 @@ spring:
 #  devtools:
 #    restart:
 #      enabled: true
+
 ## QQ邮箱配置
   mail:
     host: smtp.qq.com #发送邮件服务器
     username: 499636235@qq.com #发送邮件的邮箱地址
-    password:  #客户端授权码，不是邮箱密码，这个在qq邮箱设置里面自动生成的
+    #密码千万不要上传到GitHub上！
+    password: 123123123 #客户端授权码，不是邮箱密码，这个在qq邮箱设置里面自动生成的
+    #密码千万不要上传到GitHub上！
     properties.mail.smtp.port: 587 #端口号465或587
     from: 499636235@qq.com # 发送邮件的地址，和上面username一致
   properties.mail.smtp.starttls.enable: true
@@ -31,7 +40,19 @@ mybatis:
 logging:
   level:
     com.suzhoukeleqi: debug
+  #日志存储地址
+  file:
+    name: "src/main/resources/logs/config/demo-xx.log"
 
+info:
+  name : "科乐奇"
+
+server:
+  #端口号
+  port: 8186
+  #项目名，如果不设定，默认是 /
+  #servlet:
+  #  context-path: /szkeleqi
 
 
 
