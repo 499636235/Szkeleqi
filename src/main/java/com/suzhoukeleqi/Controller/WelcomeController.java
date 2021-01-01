@@ -29,6 +29,7 @@ public class WelcomeController {
 
     /**
      * 注入发送邮件的接口
+     * 代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
      */
     @Autowired
     private IMailService mailService;
@@ -98,6 +99,10 @@ public class WelcomeController {
 //        return user.toString();
 //    }
 
+
+    /**
+     * 代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
+     */
     @RequestMapping("/testmail")
     public void sendmail() {
         mailService.sendSimpleMail("499636235@qq.com","主题：你好普通邮件","内容：第一封邮件");
@@ -107,4 +112,5 @@ public class WelcomeController {
     public void sendmailHtml(){
         mailService.sendHtmlMail("499636235@qq.com","主题：你好html邮件","<h1>内容：第一封html邮件</h1>");
     }
+
 }

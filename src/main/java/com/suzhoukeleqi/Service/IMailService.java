@@ -1,7 +1,7 @@
 package com.suzhoukeleqi.Service;
 
 /**
- * @Author: 姜飞祥
+ * @Author: 姜飞祥  代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
  * @Description: 封装一个发邮件的接口，后边直接调用即可
  * @Date: Create in 2019/1/28/0028 21:57
  * @param: $params$

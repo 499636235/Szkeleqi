@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 
 /**
- * @Author: 姜飞祥
+ * @Author: 姜飞祥  代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
  * @Description:
  * @Date: Create in 2019/1/28/0028 22:00
  * @param: $params$
@@ -116,7 +116,6 @@ public class IMailServiceImpl implements IMailService {
         } catch (MessagingException e) {
             logger.error("发送邮件时发生异常！", e);
         }
-
 
     }
 }
