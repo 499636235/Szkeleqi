@@ -1,27 +1,33 @@
-body{
-    padding-top:70px;
+body {
+    padding-top: 70px;
     /*padding-bottom:70px;*/
 }
-div.item img{
-    width:100%;
+
+div.item img {
+    width: 100%;
 }
-div#carousel-example-generic{
-    width:100%;
-    margin:0 auto;
+
+div#carousel-example-generic {
+    width: 100%;
+    margin: 0 auto;
 }
-.margin-right-20{
+
+.margin-right-20 {
     margin-right: 20px;
 }
+
 .picture-box {
     padding: 60px 0 100px 0;
     text-align: center;
 }
+
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
+
 .title-box p {
     display: block;
     margin-bottom: 30px;
@@ -31,18 +37,22 @@ div#carousel-example-generic{
     -webkit-transition: .5s;
     -o-transition: .5s;
 }
+
 .picture-list {
     width: 90%;
     margin: 0 auto;
 }
+
 .blocks, [class*="blocks-"] {
     padding: 0;
     margin: 0 -15px;
     list-style: none;
 }
+
 .blocks-xs-2 > li {
     width: 50%;
 }
+
 .blocks-md-4 > li {
     width: 25%;
 }
@@ -55,31 +65,38 @@ div#carousel-example-generic{
     padding-left: 15px;
     margin-bottom: 22px;
 }
-.picture-box img{
+
+.picture-box img {
     width: 340px;
     height: 340px;
 }
-.navbar-static-bottom{
+
+.navbar-static-bottom {
     background: #17171a;
     line-height: 2;
     padding: 20px 0;
 }
-.navbar-static-bottom a{
+
+.navbar-static-bottom a {
     color: #888;
-    text-decoration:none;
+    text-decoration: none;
 }
+
 .navbar-static-bottom a:hover {
     color: #fff;
 }
-.navbar-static-bottom div{
-    text-align:center;
-    color:#888;
+
+.navbar-static-bottom div {
+    text-align: center;
+    color: #888;
 }
+
 .animation-slide-bottom {
     -webkit-animation-name: slide-bottom;
     -o-animation-name: slide-bottom;
     animation-name: slide-bottom;
 }
+
 [class*=animation-] {
     -webkit-animation-duration: .5s;
     -o-animation-duration: .5s;
@@ -91,8 +108,36 @@ div#carousel-example-generic{
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-@keyframes slide-bottom
-{
-    from {top:100px;}
-    to {top:0px;}
+
+@keyframes slide-bottom {
+    from {
+        top: 100px;
+    }
+    to {
+        top: 0px;
+    }
+}
+
+/* 去除 bootstrap 中轮播两边阴影 https://blog.csdn.net/weixin_38747509/article/details/79358783 */
+.carousel-control.left {
+
+    background-image: none;
+
+    background-repeat: repeat-x;
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+
+}
+
+.carousel-control.right {
+
+    left: auto;
+    right: 0;
+
+    background-image: none;
+
+    background-repeat: repeat-x;
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+
 }

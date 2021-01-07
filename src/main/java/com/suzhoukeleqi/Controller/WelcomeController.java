@@ -62,7 +62,10 @@ public class WelcomeController {
     }
 
     @RequestMapping("/product")
-    public String goToProduct() {
+    public String goToProduct(ModelMap modelMap) {
+        List<IndexProduct> indexProductList = productService.selectIndexProductList();
+        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
+        modelMap.addAttribute("indexProductList", indexProductListJSONArray);
         return "product";
     }
 

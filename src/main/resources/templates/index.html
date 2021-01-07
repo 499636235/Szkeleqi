@@ -4,25 +4,25 @@
 <head>
     <meta charset="UTF-8">
 
-<!--thymeleaf代码块功能 导入共用link-->
+    <!--thymeleaf代码块功能 导入共用link-->
     <th:block th:replace="common :: common_link"></th:block>
-<!--导入样式表-->
-    <link href="/css/index.css" rel="stylesheet" type="text/css" />
-<!--JavaScript-->
+    <!--导入样式表-->
+    <link href="/css/index.css" rel="stylesheet" type="text/css"/>
+    <!--JavaScript-->
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
 
-            var jsonStr="[[${indexProductList}]]".replace(new RegExp('&quot;',"gm"), '"' );
+            var jsonStr = "[[${indexProductList}]]".replace(new RegExp('&quot;', "gm"), '"');
             // console.log(jsonStr);
-            var jsonObject= JSON.parse(jsonStr);
+            var jsonObject = JSON.parse(jsonStr);
             // console.log(jsonObject);
-            for(var k in jsonObject ){  //遍历jsonObject 对象的每个key/value对,k为key
+            for (var k in jsonObject) {  //遍历jsonObject 对象的每个key/value对,k为key
                 // console.log(k + " " + jsonObject[k].name);
                 $("#product_ul").append(
                     "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" class=\"animation-slide-bottom\">\n" +
                     "   <a href=\"/product/" + jsonObject[k].product_id + "\">\n" +
                     "       <p>\n" +
-                    "           <img src=\"" + jsonObject[k].picture +  "\" alt=\"" + jsonObject[k].name + "\" style=\"display: inline;\">\n" +
+                    "           <img src=\"" + jsonObject[k].picture + "\" alt=\"" + jsonObject[k].name + "\" style=\"display: inline;\">\n" +
                     "       </p>\n" +
                     "       <span>" + jsonObject[k].name + "</span>\n" +
                     "   </a>\n" +
@@ -40,7 +40,8 @@
 <th:block th:replace="common :: common_carousel"></th:block>
 <div class="picture-box">
     <div class="container-fluid">
-        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom" data-repeat="false">
+        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom"
+             data-repeat="false">
 
             <h3 class="animation-slide-bottom" style="display: inline;">产品展示</h3>
 
@@ -50,26 +51,26 @@
         <div class="picture-list">
             <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
 
-<!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
-<!--                    <a title="常规颈枕" href="/product/1.png">-->
-<!--                        <p>-->
-<!--                            <b></b>-->
-<!--                            <i class="fa fa-search-plus"></i>-->
-<!--                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
-<!--                        </p>-->
-<!--                        <span>常规颈枕</span>-->
-<!--                    </a>-->
-<!--                </li>-->
+                <!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
+                <!--                    <a title="常规颈枕" href="/product/1.png">-->
+                <!--                        <p>-->
+                <!--                            <b></b>-->
+                <!--                            <i class="fa fa-search-plus"></i>-->
+                <!--                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
+                <!--                        </p>-->
+                <!--                        <span>常规颈枕</span>-->
+                <!--                    </a>-->
+                <!--                </li>-->
 
 
-<!--                <li data-plugin="appear" data-animate="slide-bottom" class="animation-slide-bottom">-->
-<!--                    <a href="/product/1">-->
-<!--                        <p>-->
-<!--                            <img src="/img/1.jpg" alt="Conventional Neck Pillow #1" style="display: inline;">-->
-<!--                        </p>-->
-<!--                        <span>Conventional Neck Pillow #1</span>-->
-<!--                    </a>-->
-<!--                </li>-->
+                <!--                <li data-plugin="appear" data-animate="slide-bottom" class="animation-slide-bottom">-->
+                <!--                    <a href="/product/1">-->
+                <!--                        <p>-->
+                <!--                            <img src="/img/1.jpg" alt="Conventional Neck Pillow #1" style="display: inline;">-->
+                <!--                        </p>-->
+                <!--                        <span>Conventional Neck Pillow #1</span>-->
+                <!--                    </a>-->
+                <!--                </li>-->
             </ul>
         </div>
     </div>
