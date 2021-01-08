@@ -23,4 +23,14 @@ public class ProductServiceImpl implements ProductService {
     public List<IndexProduct> selectIndexProductList() {
         return productMapper.selectIndexProductList();
     }
+
+    @Override
+    public List<IndexProduct> selectProductListByclass1(String class1) {
+        return productMapper.selectProductListByclass1(class1);
+    }
+
+    @Override
+    public List<IndexProduct> selectProductListByclass2(String class2) {
+        return productMapper.selectProductListByclass2(class2);
+    }
 }

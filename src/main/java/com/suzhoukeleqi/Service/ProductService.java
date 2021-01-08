@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface ProductService {
     Product selectProduct(int id);
+
     List<IndexProduct> selectIndexProductList();
+
+    List<IndexProduct> selectProductListByclass1(String class1);
+
+    List<IndexProduct> selectProductListByclass2(String class2);
 }

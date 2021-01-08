@@ -9,5 +9,10 @@ import java.util.List;
 @Repository
 public interface ProductMapper {
     Product selectProduct(int id);
+
     List<IndexProduct> selectIndexProductList();
+
+    List<IndexProduct> selectProductListByclass1(String class1);
+
+    List<IndexProduct> selectProductListByclass2(String class2);
 }

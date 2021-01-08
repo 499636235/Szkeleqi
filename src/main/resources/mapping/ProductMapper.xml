@@ -3,12 +3,12 @@
 <mapper namespace="com.suzhoukeleqi.Mapper.ProductMapper">
 
     <resultMap id="ProductResultMap" type="com.suzhoukeleqi.entity.Product">
-        <result column="id" jdbcType="INTEGER" property="id" />
-        <result column="class1" jdbcType="VARCHAR" property="class1" />
-        <result column="class2" jdbcType="VARCHAR" property="class2" />
-        <result column="class3" jdbcType="VARCHAR" property="class3" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="class1" jdbcType="VARCHAR" property="class1"/>
+        <result column="class2" jdbcType="VARCHAR" property="class2"/>
+        <result column="class3" jdbcType="VARCHAR" property="class3"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="picture" jdbcType="VARCHAR" property="picture"/>
     </resultMap>
 
     <select id="selectProduct" resultType="com.suzhoukeleqi.entity.Product">
@@ -16,10 +16,10 @@
     </select>
 
     <resultMap id="IndexProductResultMap" type="com.suzhoukeleqi.entity.IndexProduct">
-        <result column="priority" jdbcType="INTEGER" property="priority" />
-        <result column="product_id" jdbcType="INTEGER" property="product_id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="picture" jdbcType="VARCHAR" property="picture" />
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="product_id" jdbcType="INTEGER" property="product_id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="picture" jdbcType="VARCHAR" property="picture"/>
     </resultMap>
 
     <select id="selectIndexProductList" resultType="com.suzhoukeleqi.entity.IndexProduct">
@@ -32,5 +32,25 @@
             left join product b
                 on a.product_id = b.id
         order by priority asc ;
+    </select>
+
+    <select id="selectProductListByclass1" resultType="com.suzhoukeleqi.entity.IndexProduct">
+        select
+            a.id,
+            a.name,
+            a.picture
+        from product a
+        where class1 = #{class1}
+        order by name asc ;
+    </select>
+
+    <select id="selectProductListByclass2" resultType="com.suzhoukeleqi.entity.IndexProduct">
+        select
+            a.id,
+            a.name,
+            a.picture
+        from product a
+        where class2 = #{class2}
+        order by name asc ;
     </select>
 </mapper>
