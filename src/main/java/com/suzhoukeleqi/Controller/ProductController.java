@@ -24,12 +24,20 @@ public class ProductController {
     @RequestMapping("product/product_detail/{id}")
     @ResponseBody
     public String GetProductDetail(@PathVariable int id) {
-        Product product = productService.selectProduct(id);
+        Product product = productService.selectProductById(id);
         return product.getPicture();
     }
 
+    @RequestMapping("/product/all")
+    public String selectProductListByclass2(ModelMap modelMap) {
+        List<IndexProduct> indexProductList = productService.selectAllProducts();
+        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
+        modelMap.addAttribute("indexProductList", indexProductListJSONArray);
+        return "product";
+    }
+
     @RequestMapping("/product/class1/{class1}")
-    public String selectProductListByclass1(@PathVariable String class1,ModelMap modelMap) {
+    public String selectProductListByclass1(@PathVariable String class1, ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectProductListByclass1(class1);
         String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
         modelMap.addAttribute("indexProductList", indexProductListJSONArray);
@@ -37,8 +45,8 @@ public class ProductController {
     }
 
     @RequestMapping("/product/class2/{class2}")
-    public String selectProductListByclass2(@PathVariable String class2,ModelMap modelMap) {
-        List<IndexProduct> indexProductList = productService.selectProductListByclass1(class2);
+    public String selectProductListByclass2(@PathVariable String class2, ModelMap modelMap) {
+        List<IndexProduct> indexProductList = productService.selectProductListByclass2(class2);
         String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
         modelMap.addAttribute("indexProductList", indexProductListJSONArray);
         return "product";

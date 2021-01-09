@@ -15,8 +15,8 @@ public class ProductServiceImpl implements ProductService {
     ProductMapper productMapper;
 
     @Override
-    public Product selectProduct(int id) {
-        return productMapper.selectProduct(id);
+    public Product selectProductById(int id) {
+        return productMapper.selectProductById(id);
     }
 
     @Override
@@ -32,5 +32,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<IndexProduct> selectProductListByclass2(String class2) {
         return productMapper.selectProductListByclass2(class2);
+    }
+
+    @Override
+    public List<IndexProduct> selectAllProducts() {
+        return productMapper.selectAllProducts();
     }
 }
