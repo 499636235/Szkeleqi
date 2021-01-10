@@ -2,7 +2,6 @@ package com.suzhoukeleqi.ServiceImpl;
 
 import com.suzhoukeleqi.Mapper.UserMapper;
 import com.suzhoukeleqi.Service.UserService;
-import com.suzhoukeleqi.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,13 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User selectUser(int id) {
-        return userMapper.selectUser(id);
+    public Integer userLogin(String username, String password) {
+        return userMapper.userLogin(username, password);
     }
+
+    @Override
+    public Integer selectUserByUsername(String username) {
+        return userMapper.selectUserByUsername(username);
+    }
+
 }

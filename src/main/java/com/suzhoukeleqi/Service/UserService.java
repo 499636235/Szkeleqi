@@ -1,7 +1,7 @@
 package com.suzhoukeleqi.Service;
 
-import com.suzhoukeleqi.entity.User;
-
 public interface UserService {
-    public User selectUser(int id);
+    Integer userLogin(String username, String password);
+
+    Integer selectUserByUsername(String username);
 }

@@ -71,26 +71,6 @@ div#carousel-example-generic {
     height: 340px;
 }
 
-.navbar-static-bottom {
-    background: #17171a;
-    line-height: 2;
-    padding: 20px 0;
-}
-
-.navbar-static-bottom a {
-    color: #888;
-    text-decoration: none;
-}
-
-.navbar-static-bottom a:hover {
-    color: #fff;
-}
-
-.navbar-static-bottom div {
-    text-align: center;
-    color: #888;
-}
-
 .animation-slide-bottom {
     -webkit-animation-name: slide-bottom;
     -o-animation-name: slide-bottom;
@@ -141,3 +121,4 @@ div#carousel-example-generic {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
 
 }
+

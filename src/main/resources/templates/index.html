@@ -34,52 +34,55 @@
     </script>
 </head>
 <body>
-<!--导航栏-->
-<th:block th:replace="common :: common_nav"></th:block>
-<!--轮播-->
-<th:block th:replace="common :: common_carousel"></th:block>
-<div class="picture-box">
-    <div class="container-fluid">
-        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom"
-             data-repeat="false">
+<div>
+    <!--导航栏-->
+    <th:block th:replace="common :: common_nav"></th:block>
+    <!--轮播-->
+    <th:block th:replace="common :: common_carousel"></th:block>
 
-            <h3 class="animation-slide-bottom" style="display: inline;">产品展示</h3>
+    <div class="picture-box">
+        <div class="container-fluid">
+            <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear"
+                 data-animate="slide-bottom"
+                 data-repeat="false">
 
-            <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
+                <h3 class="animation-slide-bottom" style="display: inline;">产品展示</h3>
 
-        </div>
-        <div class="picture-list">
-            <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
+                <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
 
-                <!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
-                <!--                    <a title="常规颈枕" href="/product/1.png">-->
-                <!--                        <p>-->
-                <!--                            <b></b>-->
-                <!--                            <i class="fa fa-search-plus"></i>-->
-                <!--                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
-                <!--                        </p>-->
-                <!--                        <span>常规颈枕</span>-->
-                <!--                    </a>-->
-                <!--                </li>-->
+            </div>
+            <div class="picture-list">
+                <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
+
+                    <!--                <li data-plugin="appear" data-animate="slide-bottom" data-repeat="false" class="animation-slide-bottom appear-no-repeat">-->
+                    <!--                    <a title="常规颈枕" href="/product/1.png">-->
+                    <!--                        <p>-->
+                    <!--                            <b></b>-->
+                    <!--                            <i class="fa fa-search-plus"></i>-->
+                    <!--                            <img id="img1" data-original="/img/1.png" src="/img/1.png" title="常规颈枕" alt="常规颈枕" style="display: inline;">-->
+                    <!--                        </p>-->
+                    <!--                        <span>常规颈枕</span>-->
+                    <!--                    </a>-->
+                    <!--                </li>-->
 
 
-                <!--                <li data-plugin="appear" data-animate="slide-bottom" class="animation-slide-bottom">-->
-                <!--                    <a href="/product/1">-->
-                <!--                        <p>-->
-                <!--                            <img src="/img/1.jpg" alt="Conventional Neck Pillow #1" style="display: inline;">-->
-                <!--                        </p>-->
-                <!--                        <span>Conventional Neck Pillow #1</span>-->
-                <!--                    </a>-->
-                <!--                </li>-->
-            </ul>
+                    <!--                <li data-plugin="appear" data-animate="slide-bottom" class="animation-slide-bottom">-->
+                    <!--                    <a href="/product/1">-->
+                    <!--                        <p>-->
+                    <!--                            <img src="/img/1.jpg" alt="Conventional Neck Pillow #1" style="display: inline;">-->
+                    <!--                        </p>-->
+                    <!--                        <span>Conventional Neck Pillow #1</span>-->
+                    <!--                    </a>-->
+                    <!--                </li>-->
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<div>
+    <!--页脚-->
+    <th:block th:replace="common :: common_footer"></th:block>
+
 
 </div>
-<!--页脚-->
-<th:block th:replace="common :: common_footerNav"></th:block>
 </body>
 </html>

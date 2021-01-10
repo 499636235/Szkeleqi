@@ -14,6 +14,8 @@
         <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+        <!--导入共用的样式表css-->
+        <link href="/css/common.css" rel="stylesheet" type="text/css"/>
 
         <!-- 额外添加的链接 -->
         <!--<th:block th:replace="${links}" />-->
@@ -137,12 +139,12 @@
 
 </div>
 <!--页脚-->
-<nav th:fragment="common_footerNav" class="navbar navbar-default navbar-static-bottom">
+<div th:fragment="common_footer" class="footer">
     <div>
         <p>Copyright Suzhou keleqi arts and crafts co., LTD. 2021-2031</p>
         <p><a href="#">技术支持：NIJIEYANG</a></p>
     </div>
-</nav>
+</div>
 <!--<footer>-->
 <!--    <div class="container ">-->
 

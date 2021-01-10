@@ -10,30 +10,17 @@
     <link href="/css/index.css" rel="stylesheet" type="text/css" />
     <!--JavaScript-->
     <script type="text/javascript">
-        $(document).ready(function(){
-            var xmlhttp;
-            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-            }
-            else {// code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.open("GET","product_detail/" + [[${id}]],true);
-            xmlhttp.send();
-            console.log("product_detail/" + [[${id}]]);
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    $('#img1').attr("src", xmlhttp.responseText);
-                    console.log("加载图片成功！：" + xmlhttp.responseText);
-                }
-                // else{
-                //     console.log("加载图片失败！");
-                //     $('#img1').attr("src", "/img/error.jpg");
-                // }
 
-            }
+        //JQuery的Ajax用法
+        $(function () {
+            console.log("/product/product_detail/" + [[${id}]]);
+            $.post("/product/product_detail/" + [[${id}]] , function (data) {
+                $('#img1').attr("src", data);
+                console.log("加载图片成功！：" + data);
+            })
+        })
 
-        });
+
     </script>
 </head>
 <body>
@@ -47,6 +34,6 @@
 
 </div>
 <!--页脚-->
-<th:block th:replace="common :: common_footerNav"></th:block>
+<th:block th:replace="common :: common_footer"></th:block>
 </body>
 </html>

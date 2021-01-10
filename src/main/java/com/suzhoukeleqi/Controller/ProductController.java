@@ -21,7 +21,7 @@ public class ProductController {
     @Qualifier("productServiceImpl")
     ProductService productService;
 
-    @RequestMapping("product/product_detail/{id}")
+    @RequestMapping("/product/product_detail/{id}")
     @ResponseBody
     public String GetProductDetail(@PathVariable int id) {
         Product product = productService.selectProductById(id);

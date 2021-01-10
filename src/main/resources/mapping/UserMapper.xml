@@ -9,8 +9,12 @@
         <result column="userGroup" jdbcType="VARCHAR" property="userGroup" />
     </resultMap>
 
-    <select id="selectUser" resultType="com.suzhoukeleqi.entity.User">
-        select * from szklq.user where id = #{id}
+    <select id="userLogin" resultType="Integer">
+        select 1 from szklq.user a where a.username = #{username} and a.password = #{password}
+    </select>
+
+    <select id="selectUserByUsername" resultType="Integer">
+        select 1 from szklq.user a where a.username = #{username}
     </select>
 
 </mapper>

@@ -1,0 +1,27 @@
+.footer{
+    position: relative;
+    height: 40px;
+
+}
+
+.footer div{
+    background: #17171a;
+    line-height: 2;
+    padding: 20px 0;
+
+    text-align: center;
+    color: #888;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a {
+    color: #888;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #fff;
+}
