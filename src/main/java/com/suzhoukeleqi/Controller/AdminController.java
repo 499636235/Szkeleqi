@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -25,22 +25,22 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/login")
-    @ResponseBody
-    public String adminLogin(String username, String password) {
+    public String adminLogin(String username, String password, ModelMap modelMap) {
         Integer num = userService.selectUserByUsername(username);
-        String result = null;
+
 
         if (num == null) {
-            result = "USERNAME_DENIED";
-            return result;
+            modelMap.addAttribute("USERNAME_MSG","USERNAME_DENIED");
+            return "/admin";
         }
 
         num = userService.userLogin(username, password);
 
         if (num == null) {
-            result = "PASSWORD_DENIED";
+            modelMap.addAttribute("PASSWORD_MSG","PASSWORD_DENIED");
+            return "/admin";
         }
-        return result;
+        return "redirect:/index";
     }
 
 }
