@@ -21,6 +21,12 @@ public class ProductController {
     @Qualifier("productServiceImpl")
     ProductService productService;
 
+    /**
+     * 产品详情页面的图片
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping("/product/product_detail/{id}")
     @ResponseBody
     public String GetProductDetail(@PathVariable int id) {
@@ -28,14 +34,27 @@ public class ProductController {
         return product.getPicture();
     }
 
+    /**
+     * 查询全部产品
+     *
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/product/all")
-    public String selectProductListByclass2(ModelMap modelMap) {
+    public String selectAllProducts(ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectAllProducts();
         String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
         modelMap.addAttribute("indexProductList", indexProductListJSONArray);
         return "product";
     }
 
+    /**
+     * 根据第一种大类查询产品
+     *
+     * @param class1
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/product/class1/{class1}")
     public String selectProductListByclass1(@PathVariable String class1, ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectProductListByclass1(class1);
@@ -44,6 +63,13 @@ public class ProductController {
         return "product";
     }
 
+    /**
+     * 根据第二种大类查询产品
+     *
+     * @param class2
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/product/class2/{class2}")
     public String selectProductListByclass2(@PathVariable String class2, ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectProductListByclass2(class2);

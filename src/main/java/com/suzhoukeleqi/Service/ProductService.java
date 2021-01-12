@@ -15,4 +15,10 @@ public interface ProductService {
     List<IndexProduct> selectProductListByclass2(String class2);
 
     List<IndexProduct> selectAllProducts();
+
+    /**
+     * 查询全表(后台用)
+     * @return
+     */
+    List<Product> selectAllFromProduct();
 }

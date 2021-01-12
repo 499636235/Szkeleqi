@@ -39,6 +39,12 @@ public class WelcomeController {
         return "redirect:/index";
     }
 
+    /**
+     * 主页
+     *
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/index")
     public String goToIndex(ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectIndexProductList();
@@ -48,16 +54,32 @@ public class WelcomeController {
         return "index";
     }
 
+    /**
+     * 测试页面
+     *
+     * @return
+     */
     @RequestMapping("/test")
     public String goToTest() {
         return "test";
     }
 
+    /**
+     * 关于页面
+     *
+     * @return
+     */
     @RequestMapping("/about")
     public String goToAbout() {
         return "about";
     }
 
+    /**
+     * 产品页面
+     *
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/product")
     public String goToProduct(ModelMap modelMap) {
         List<IndexProduct> indexProductList = productService.selectIndexProductList();
@@ -66,27 +88,54 @@ public class WelcomeController {
         return "product";
     }
 
+    /**
+     * 产品详情页面
+     *
+     * @param id
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/product/{id}")
     public String goToProductDetail(@PathVariable int id, ModelMap modelMap) {
         modelMap.addAttribute("id", id);
         return "product_detail";
     }
 
+    /**
+     * 新闻页面
+     *
+     * @return
+     */
     @RequestMapping("/news")
     public String goToNews() {
         return "news";
     }
 
+    /**
+     * 案列页面
+     *
+     * @return
+     */
     @RequestMapping("/case")
     public String goToCase() {
         return "case";
     }
 
+    /**
+     * 联系页面
+     *
+     * @return
+     */
     @RequestMapping("/contact")
     public String goToContact() {
         return "contact";
     }
 
+    /**
+     * 搜索页面
+     *
+     * @return
+     */
     @RequestMapping("/search")
     public String goToSearch() {
         return "search";

@@ -17,4 +17,6 @@ public interface ProductMapper {
     List<IndexProduct> selectProductListByclass2(String class2);
 
     List<IndexProduct> selectAllProducts();
+
+    List<Product> selectAllFromProduct();
 }

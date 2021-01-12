@@ -38,4 +38,9 @@ public class ProductServiceImpl implements ProductService {
     public List<IndexProduct> selectAllProducts() {
         return productMapper.selectAllProducts();
     }
+
+    @Override
+    public List<Product> selectAllFromProduct() {
+        return productMapper.selectAllFromProduct();
+    }
 }

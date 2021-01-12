@@ -62,4 +62,8 @@
         from szklq.product a
         order by a.id asc ;
     </select>
+
+    <select id="selectAllFromProduct" resultType="com.suzhoukeleqi.entity.Product">
+        select a.* from szklq.product a order by a.id asc ;
+    </select>
 </mapper>
