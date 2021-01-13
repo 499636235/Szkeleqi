@@ -14,33 +14,62 @@
 
             // console.log("[[${productList}]]");
 
-            var jsonStr = "[[${productList}]]".replace(new RegExp('&quot;', "gm"), '"');
+            //转换 转义过的引号 &quot; ==> "
+            var productListJson = "[[${productList}]]".replace(new RegExp('&quot;', "gm"), '"');
 
-            // console.log(jsonStr);
+            // console.log(productListJson);
 
-            var jsonObject = JSON.parse(jsonStr);
+            var productList = JSON.parse(productListJson);
 
-            // console.log(jsonObject);
+            // console.log(productList);
 
             // 获取表格body
             tb = $("#tbody");
 
-            // 遍历 jsonObject 数组的每个对象,k为 0 开始的下标
-            for (var k in jsonObject) {
-                 // console.log(k + " " + jsonObject[k].name);
+            // 遍历 productList 数组的每个对象,k为 0 开始的下标
+            for (var k in productList) {
+                // console.log(k + " " + productList[k].name);
 
                 // 新建一行
                 var tr = $("<tr/>");
                 // 依次插入这一行内的每列
-                $("<td/>").html(jsonObject[k].id).appendTo(tr);
-                $("<td/>").html(jsonObject[k].class1).appendTo(tr);
-                $("<td/>").html(jsonObject[k].class2).appendTo(tr);
-                $("<td/>").html(jsonObject[k].class3).appendTo(tr);
-                $("<td/>").html(jsonObject[k].name).appendTo(tr);
-                $("<td/>").html(jsonObject[k].picture).appendTo(tr);
+                $("<td/>").html(productList[k].id).appendTo(tr);
+                $("<td/>").html(productList[k].class1).appendTo(tr);
+                $("<td/>").html(productList[k].class2).appendTo(tr);
+                $("<td/>").html(productList[k].class3).appendTo(tr);
+                $("<td/>").html(productList[k].name).appendTo(tr);
+                $("<td/>").html(productList[k].picture).appendTo(tr);
                 // 将该行加入表格中
                 tb.append(tr);
             }
+
+            console.log("[[${pageNum}]]");
+            console.log("[[${pageSize}]]");
+            console.log("[[${totalPages}]]");
+            console.log("[[${totalSize}]]");
+
+            var pageNum = parseInt("[[${pageNum}]]");
+            var pageSize = parseInt("[[${pageSize}]]");
+            var totalPages = parseInt("[[${totalPages}]]");
+            var totalSize = parseInt("[[${totalSize}]]");
+
+
+            // $("<li/>").append($("<a/>").html("上一页")).appendTo($(".pagination"));
+            var a_prev = "<a href=\"pages?pageNum=" + (pageNum - 1) + "&pageSize=10\">上一页</a>";
+            $("<li/>").append(a_prev).appendTo($(".pagination"));
+
+
+            for (var i = 1; i <= totalPages; i++) {
+                // $("<li/>").append($("<a/>").html(i)).appendTo($(".pagination"));
+                var a_i = "<a href=\"pages?pageNum=" + i + "&pageSize=10\">" + i + "</a>";
+                $("<li/>").append(a_i).appendTo($(".pagination"));
+
+            }
+
+            // $("<li/>").append($("<a/>").html("下一页")).appendTo($(".pagination"));
+            var a_next = "<a href=\"pages?pageNum=" + (pageNum + 1) + "&pageSize=10\">下一页</a>";
+            $("<li/>").append(a_next).appendTo($(".pagination"));
+
 
             // $("#login").click(function () {
             //
@@ -96,7 +125,7 @@
                                     class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/admin/admin_index/product/pages?pageNum=3&pageSize=3">分页查询product</a>
+                                    <a href="/admin/admin_index/product/pages?pageNum=1&pageSize=10">分页查询product</a>
                                 </li>
                                 <li>
                                     <a href="#">index_product_list</a>
@@ -151,6 +180,14 @@
                 </div>
 
             </nav>
+
+            <lable id="span_page" th:text="${pageNum}"></lable>
+            <ul class="pagination">
+                <!--                <li>-->
+                <!--                    <a href="#">xxx</a>-->
+                <!--                </li>-->
+            </ul>
+
             <table class="table table-bordered table-hover">
                 <thead id="thead">
                 <tr>
@@ -192,6 +229,8 @@
                 </tr>
                 </tbody>
             </table>
+
+
         </div>
     </div>
 </div>
