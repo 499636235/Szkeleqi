@@ -58,7 +58,12 @@ logging:
   file:
     name: "src/main/resources/logs/config/demo-xx.log"
 
-
+# pagehelper 分页查询插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 
 

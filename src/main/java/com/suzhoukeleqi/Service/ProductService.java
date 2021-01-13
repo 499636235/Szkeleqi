@@ -1,6 +1,8 @@
 package com.suzhoukeleqi.Service;
 
 import com.suzhoukeleqi.entity.IndexProduct;
+import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.PageResult;
 import com.suzhoukeleqi.entity.Product;
 
 import java.util.List;
@@ -18,7 +20,15 @@ public interface ProductService {
 
     /**
      * 查询全表(后台用)
+     *
      * @return
      */
     List<Product> selectAllFromProduct();
+
+    /**
+     * 分页查询全表(后台用)
+     *
+     * @return
+     */
+    PageResult selectPagesFromProduct(PageRequest pageRequest);
 }

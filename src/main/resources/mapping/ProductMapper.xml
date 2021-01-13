@@ -2,68 +2,75 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suzhoukeleqi.Mapper.ProductMapper">
 
-<!--    <resultMap id="ProductResultMap" type="com.suzhoukeleqi.entity.Product">-->
-<!--        <result column="id" jdbcType="INTEGER" property="id"/>-->
-<!--        <result column="class1" jdbcType="VARCHAR" property="class1"/>-->
-<!--        <result column="class2" jdbcType="VARCHAR" property="class2"/>-->
-<!--        <result column="class3" jdbcType="VARCHAR" property="class3"/>-->
-<!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
-<!--        <result column="picture" jdbcType="VARCHAR" property="picture"/>-->
-<!--    </resultMap>-->
+    <!--    <resultMap id="ProductResultMap" type="com.suzhoukeleqi.entity.Product">-->
+    <!--        <result column="id" jdbcType="INTEGER" property="id"/>-->
+    <!--        <result column="class1" jdbcType="VARCHAR" property="class1"/>-->
+    <!--        <result column="class2" jdbcType="VARCHAR" property="class2"/>-->
+    <!--        <result column="class3" jdbcType="VARCHAR" property="class3"/>-->
+    <!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
+    <!--        <result column="picture" jdbcType="VARCHAR" property="picture"/>-->
+    <!--    </resultMap>-->
 
     <select id="selectProductById" resultType="com.suzhoukeleqi.entity.Product">
-        select a.* from szklq.product a where a.id = #{id}
+        select a.*
+        from szklq.product a
+        where a.id = #{id}
     </select>
 
-<!--    <resultMap id="IndexProductResultMap" type="com.suzhoukeleqi.entity.IndexProduct">-->
-<!--        <result column="priority" jdbcType="INTEGER" property="priority"/>-->
-<!--        <result column="product_id" jdbcType="INTEGER" property="product_id"/>-->
-<!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
-<!--        <result column="picture" jdbcType="VARCHAR" property="picture"/>-->
-<!--    </resultMap>-->
+    <!--    <resultMap id="IndexProductResultMap" type="com.suzhoukeleqi.entity.IndexProduct">-->
+    <!--        <result column="priority" jdbcType="INTEGER" property="priority"/>-->
+    <!--        <result column="product_id" jdbcType="INTEGER" property="product_id"/>-->
+    <!--        <result column="name" jdbcType="VARCHAR" property="name"/>-->
+    <!--        <result column="picture" jdbcType="VARCHAR" property="picture"/>-->
+    <!--    </resultMap>-->
 
     <select id="selectIndexProductList" resultType="com.suzhoukeleqi.entity.IndexProduct">
-        select
-            a.priority as priority,
-            a.product_id as product_id,
-            b.name as name,
-            b.picture as picture
+        select a.priority   as priority,
+               a.product_id as product_id,
+               b.name       as name,
+               b.picture    as picture
         from szklq.index_product_list a
-            left join szklq.product b
-                on a.product_id = b.id
-        order by a.priority asc ;
+                 left join szklq.product b
+                           on a.product_id = b.id
+        order by a.priority asc;
     </select>
 
     <select id="selectProductListByclass1" resultType="com.suzhoukeleqi.entity.IndexProduct">
-        select
-            a.id as product_id,
-            a.name as name,
-            a.picture as picture
+        select a.id      as product_id,
+               a.name    as name,
+               a.picture as picture
         from szklq.product a
         where a.class1 = #{class1}
-        order by a.name asc ;
+        order by a.name asc;
     </select>
 
     <select id="selectProductListByclass2" resultType="com.suzhoukeleqi.entity.IndexProduct">
-        select
-            a.id as product_id,
-            a.name as name,
-            a.picture as picture
+        select a.id      as product_id,
+               a.name    as name,
+               a.picture as picture
         from szklq.product a
         where a.class2 = #{class2}
-        order by a.name asc ;
+        order by a.name asc;
     </select>
 
     <select id="selectAllProducts" resultType="com.suzhoukeleqi.entity.IndexProduct">
-        select
-            a.id as product_id,
-            a.name as name,
-            a.picture as picture
+        select a.id      as product_id,
+               a.name    as name,
+               a.picture as picture
         from szklq.product a
-        order by a.id asc ;
+        order by a.id asc;
     </select>
 
     <select id="selectAllFromProduct" resultType="com.suzhoukeleqi.entity.Product">
-        select a.* from szklq.product a order by a.id asc ;
+        select a.*
+        from szklq.product a
+        order by a.id asc;
     </select>
+
+    <select id="selectPagesFromProduct" resultType="com.suzhoukeleqi.entity.Product">
+        select a.*
+        from szklq.product a
+        order by a.id asc
+    </select>
+
 </mapper>

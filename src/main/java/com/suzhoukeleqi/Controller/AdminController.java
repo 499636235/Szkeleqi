@@ -2,6 +2,8 @@ package com.suzhoukeleqi.Controller;
 
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.Service.UserService;
+import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.PageResult;
 import com.suzhoukeleqi.entity.Product;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
@@ -76,18 +78,32 @@ public class AdminController {
     }
 
     /**
-     * 根据第一种大类查询产品
+     * 查询产品全表
      *
      * @param modelMap
      * @return
      */
-    @RequestMapping("/admin/admin_index/product")
-    public String selectAllFromProduct(ModelMap modelMap) {
-        List<Product> productList = productService.selectAllFromProduct();
+//    @RequestMapping("/admin/admin_index/product")
+//    public String selectAllFromProduct(ModelMap modelMap) {
+//        List<Product> productList = productService.selectAllFromProduct();
+//        String productListJSONArray = JSONArray.fromObject(productList).toString();
+//        modelMap.addAttribute("productList", productListJSONArray);
+//        return "admin_index";
+//    }
+
+    /**
+     * 分页查询产品全表
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/admin/admin_index/product/pages")
+    public String selectPagesFromProduct(PageRequest pageRequest, ModelMap modelMap) {
+        PageResult pageResult = productService.selectPagesFromProduct(pageRequest);
+        List<Product> productList = (List<Product>) pageResult.getContent();
         String productListJSONArray = JSONArray.fromObject(productList).toString();
         modelMap.addAttribute("productList", productListJSONArray);
         return "admin_index";
     }
-
 
 }

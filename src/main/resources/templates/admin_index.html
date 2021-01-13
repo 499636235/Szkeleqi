@@ -22,38 +22,24 @@
 
             // console.log(jsonObject);
 
-            for (var k in jsonObject) {  //遍历jsonObject 对象的每个key/value对,k为key
-                // console.log(k + " " + jsonObject[k].name);
+            // 获取表格body
+            tb = $("#tbody");
 
+            // 遍历 jsonObject 数组的每个对象,k为 0 开始的下标
+            for (var k in jsonObject) {
+                 // console.log(k + " " + jsonObject[k].name);
 
-                tb = $("#tbody");
-
+                // 新建一行
                 var tr = $("<tr/>");
-                var td1 = $("<td/>").html("td1").appendTo(tr);
+                // 依次插入这一行内的每列
+                $("<td/>").html(jsonObject[k].id).appendTo(tr);
+                $("<td/>").html(jsonObject[k].class1).appendTo(tr);
+                $("<td/>").html(jsonObject[k].class2).appendTo(tr);
+                $("<td/>").html(jsonObject[k].class3).appendTo(tr);
+                $("<td/>").html(jsonObject[k].name).appendTo(tr);
+                $("<td/>").html(jsonObject[k].picture).appendTo(tr);
+                // 将该行加入表格中
                 tb.append(tr);
-
-                // //创建节点
-                // var tr = document.createElement('tr');
-                // var td1 = document.createElement('td');
-                // var td2 = document.createElement('td');
-                // //获取元素内容
-                // td1.innerHTML = uname.value;
-                // td2.innerHTML = email.value;
-                // //添加内容到表格中
-                // tr.append(td1);
-                // tr.append(td2);
-                // tbody.append(tr);
-                //
-                // $("#product_ul").append(
-                //     "<li data-plugin=\"appear\" data-animate=\"slide-bottom\" class=\"animation-slide-bottom\">\n" +
-                //     "   <a href=\"/product/" + jsonObject[k].product_id + "\">\n" +
-                //     "       <p>\n" +
-                //     "           <img src=\"" + jsonObject[k].picture + "\" alt=\"" + jsonObject[k].name + "\" style=\"display: inline;\">\n" +
-                //     "       </p>\n" +
-                //     "       <span>" + jsonObject[k].name + "</span>\n" +
-                //     "   </a>\n" +
-                //     "</li>"
-                // );
             }
 
             // $("#login").click(function () {
@@ -110,7 +96,7 @@
                                     class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/admin/admin_index/product">product</a>
+                                    <a href="/admin/admin_index/product/pages?pageNum=3&pageSize=3">分页查询product</a>
                                 </li>
                                 <li>
                                     <a href="#">index_product_list</a>
@@ -169,89 +155,40 @@
                 <thead id="thead">
                 <tr>
                     <th>
-                        编号
+                        id
                     </th>
                     <th>
-                        产品
+                        class1
                     </th>
                     <th>
-                        交付时间
+                        class2
                     </th>
                     <th>
-                        状态
+                        class3
+                    </th>
+                    <th>
+                        name
+                    </th>
+                    <th>
+                        picture
                     </th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
                 <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        01/04/2012
-                    </td>
-                    <td>
-                        Default
-                    </td>
+
                 </tr>
                 <tr class="success">
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        01/04/2012
-                    </td>
-                    <td>
-                        Approved
-                    </td>
+
                 </tr>
                 <tr class="error">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        02/04/2012
-                    </td>
-                    <td>
-                        Declined
-                    </td>
+
                 </tr>
                 <tr class="warning">
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        03/04/2012
-                    </td>
-                    <td>
-                        Pending
-                    </td>
+
                 </tr>
                 <tr class="info">
-                    <td>
-                        4
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        04/04/2012
-                    </td>
-                    <td>
-                        Call in to confirm
-                    </td>
+
                 </tr>
                 </tbody>
             </table>
