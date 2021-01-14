@@ -3,18 +3,23 @@
 <mapper namespace="com.suzhoukeleqi.Mapper.UserMapper">
 
     <resultMap id="UserResultMap" type="com.suzhoukeleqi.entity.User">
-        <result column="id" jdbcType="INTEGER" property="id" />
-        <result column="userName" jdbcType="VARCHAR" property="userName" />
-        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
-        <result column="userGroup" jdbcType="VARCHAR" property="userGroup" />
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="passWord" jdbcType="VARCHAR" property="passWord"/>
+        <result column="userGroup" jdbcType="VARCHAR" property="userGroup"/>
     </resultMap>
 
     <select id="userLogin" resultType="Integer">
-        select 1 from szklq.user a where a.username = #{username} and a.password = #{password}
+        select 1
+        from szklq.user a
+        where a.username = #{username}
+          and a.password = #{password}
     </select>
 
     <select id="selectUserByUsername" resultType="Integer">
-        select 1 from szklq.user a where a.username = #{username}
+        select 1
+        from szklq.user a
+        where a.username = #{username}
     </select>
 
 </mapper>

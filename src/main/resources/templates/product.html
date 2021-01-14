@@ -30,6 +30,30 @@
                 );
             }
 
+            // 分页相关的参数
+            var pageNum = parseInt("[[${pageNum}]]");
+            var pageSize = parseInt("[[${pageSize}]]");
+            var totalPages = parseInt("[[${totalPages}]]");
+            var totalSize = parseInt("[[${totalSize}]]");
+
+            // 添加页码中的 "上一页"
+            // $("<li/>").append($("<a/>").html("上一页")).appendTo($(".pagination"));
+            var a_prev = "<a href=\"/product/all/" + (pageNum - 1) + "/8\">上一页</a>";
+            $("<li/>").append(a_prev).appendTo($(".pagination"));
+
+            // 添加页码中的 页号
+            for (var i = 1; i <= totalPages; i++) {
+                // $("<li/>").append($("<a/>").html(i)).appendTo($(".pagination"));
+                var a_i = "<a href=\"/product/all/" + i + "/8\">" + i + "</a>";
+                $("<li/>").append(a_i).appendTo($(".pagination"));
+
+            }
+
+            // 添加页码中的 "下一页"
+            // $("<li/>").append($("<a/>").html("下一页")).appendTo($(".pagination"));
+            var a_next = "<a href=\"/product/all/" + (pageNum + 1) + "/8\">下一页</a>";
+            $("<li/>").append(a_next).appendTo($(".pagination"));
+
         });
     </script>
 </head>
@@ -53,8 +77,16 @@
 
             </ul>
         </div>
+
     </div>
+    <ul class="pagination">
+<!--        <li>-->
+<!--            <a href="#">xxx</a>-->
+<!--        </li>-->
+    </ul>
 </div>
+
+
 
 <div>
 

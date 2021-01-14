@@ -45,6 +45,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public PageResult selectAllProductsPages(PageRequest pageRequest) {
+        return PageUtils.getPageResult(getPageInfo2(pageRequest));
+    }
+
+    /**
+     * 调用分页插件完成分页
+     * @param pageRequest
+     * @return
+     */
+    private PageInfo<IndexProduct> getPageInfo2(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<IndexProduct> indexProductList = productMapper.selectAllProductsPages();
+        return new PageInfo<IndexProduct>(indexProductList);
+    }
+
+    @Override
     public List<Product> selectAllFromProduct() {
         return productMapper.selectAllFromProduct();
     }

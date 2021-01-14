@@ -18,6 +18,8 @@ public interface ProductMapper {
 
     List<IndexProduct> selectAllProducts();
 
+    List<IndexProduct> selectAllProductsPages();
+
     List<Product> selectAllFromProduct();
 
     List<Product> selectPagesFromProduct();

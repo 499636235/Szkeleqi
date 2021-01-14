@@ -2,6 +2,8 @@ package com.suzhoukeleqi.Controller;
 
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.entity.IndexProduct;
+import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.PageResult;
 import com.suzhoukeleqi.entity.Product;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,25 @@ public class ProductController {
         List<IndexProduct> indexProductList = productService.selectAllProducts();
         String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
         modelMap.addAttribute("indexProductList", indexProductListJSONArray);
+        return "product";
+    }
+
+    /**
+     * 分页查询全部产品
+     *
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/product/all/{pageNum}/{pageSize}")
+    public String selectPagesFromProduct(PageRequest pageRequest, ModelMap modelMap) {
+        PageResult pageResult = productService.selectAllProductsPages(pageRequest);
+        List<IndexProduct> indexProductList = (List<IndexProduct>) pageResult.getContent();
+        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
+        modelMap.addAttribute("indexProductList", indexProductListJSONArray);
+        modelMap.addAttribute("pageNum",pageResult.getPageNum());
+        modelMap.addAttribute("pageSize",pageResult.getPageSize());
+        modelMap.addAttribute("totalPages",pageResult.getTotalPages());
+        modelMap.addAttribute("totalSize",pageResult.getTotalSize());
         return "product";
     }
 

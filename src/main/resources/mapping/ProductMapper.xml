@@ -32,7 +32,7 @@
         from szklq.index_product_list a
                  left join szklq.product b
                            on a.product_id = b.id
-        order by a.priority asc;
+        order by a.priority asc
     </select>
 
     <select id="selectProductListByclass1" resultType="com.suzhoukeleqi.entity.IndexProduct">
@@ -41,7 +41,7 @@
                a.picture as picture
         from szklq.product a
         where a.class1 = #{class1}
-        order by a.name asc;
+        order by a.name asc
     </select>
 
     <select id="selectProductListByclass2" resultType="com.suzhoukeleqi.entity.IndexProduct">
@@ -50,7 +50,7 @@
                a.picture as picture
         from szklq.product a
         where a.class2 = #{class2}
-        order by a.name asc;
+        order by a.name asc
     </select>
 
     <select id="selectAllProducts" resultType="com.suzhoukeleqi.entity.IndexProduct">
@@ -58,13 +58,21 @@
                a.name    as name,
                a.picture as picture
         from szklq.product a
-        order by a.id asc;
+        order by a.id asc
+    </select>
+
+    <select id="selectAllProductsPages" resultType="com.suzhoukeleqi.entity.IndexProduct">
+        select a.id      as product_id,
+               a.name    as name,
+               a.picture as picture
+        from szklq.product a
+        order by a.id asc
     </select>
 
     <select id="selectAllFromProduct" resultType="com.suzhoukeleqi.entity.Product">
         select a.*
         from szklq.product a
-        order by a.id asc;
+        order by a.id asc
     </select>
 
     <select id="selectPagesFromProduct" resultType="com.suzhoukeleqi.entity.Product">

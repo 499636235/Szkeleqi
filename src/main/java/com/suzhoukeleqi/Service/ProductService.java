@@ -18,6 +18,8 @@ public interface ProductService {
 
     List<IndexProduct> selectAllProducts();
 
+    PageResult selectAllProductsPages(PageRequest pageRequest);
+
     /**
      * 查询全表(后台用)
      *
