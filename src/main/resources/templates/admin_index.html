@@ -14,6 +14,11 @@
 
             // console.log("[[${productList}]]");
 
+            // 判断空值
+            if ("[[${productList}]]".length === 0) {
+                return;
+            }
+
             //转换 转义过的引号 &quot; ==> "
             var productListJson = "[[${productList}]]".replace(new RegExp('&quot;', "gm"), '"');
 

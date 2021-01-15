@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
-<link href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="/css/test.css" rel="stylesheet" type="text/css" />
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--thymeleaf代码块功能 导入共用link-->
+<th:block th:replace="common :: common_link"></th:block>
+
 <script type="text/javascript">
     $(document).ready(function(){
         // $("#bt1").click(function(){
@@ -92,5 +91,17 @@
 <!--</div>-->
 <a href="/testmail" data-target="/testmail">测试mail</a>
 <a href="/testhtmlmail" data-target="/testhtmlmail">测试htmlmail</a>
+
+<p>两年后将会是 <span th:text="2020 + 2">1902</span>.</p>
+<span th:text="'欢迎您:' + '!'"></span>
+<span th:text="bbbb"></span>
+
+<script th:inline="javascript">
+    const user = /*[[${msg}]]*/ {};
+    const age = /*[[${msg}]]*/ 20;
+    console.log(user);
+    console.log(age)
+</script>
+
 </body>
 </html>

@@ -60,7 +60,8 @@ public class WelcomeController {
      * @return
      */
     @RequestMapping("/test")
-    public String goToTest() {
+    public String goToTest(ModelMap modelMap) {
+        modelMap.addAttribute("msg", "shit");
         return "test";
     }
 
