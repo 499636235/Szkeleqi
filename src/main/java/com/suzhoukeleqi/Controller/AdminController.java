@@ -97,8 +97,11 @@ public class AdminController {
      * @param modelMap
      * @return
      */
-    @RequestMapping("/admin/admin_index/product/pages")
+    @RequestMapping("/admin/admin_index/product/pages/{pageNum}/{pageSize}")
     public String selectPagesFromProduct(PageRequest pageRequest, ModelMap modelMap) {
+
+        modelMap.addAttribute("path", "/admin/admin_index/product/pages/");
+
         PageResult pageResult = productService.selectPagesFromProduct(pageRequest);
         List<Product> productList = (List<Product>) pageResult.getContent();
         String productListJSONArray = JSONArray.fromObject(productList).toString();

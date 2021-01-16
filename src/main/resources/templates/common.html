@@ -58,7 +58,7 @@
 </head>
 
 <body>
-<!--导航栏-->
+<!-- 导航栏 -->
 <nav th:fragment="common_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -99,7 +99,7 @@
         </div>
     </div>
 </nav>
-<!--轮播(旋转木马carousel)-->
+<!-- 轮播(旋转木马carousel) -->
 <div th:fragment="common_carousel" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -138,7 +138,25 @@
     </a>
 
 </div>
-<!--页脚-->
+
+
+<!-- 分页 按钮组 -->
+<ul th:fragment="common_pager" class="pagination" th:if="${pageNum!=null?true:false}">
+    <li>
+        <a th:if="${pageNum} gt 1" th:href="@{ ${path} + ${pageNum - 1} + '/' + ${pageSize} }">上一页</a>
+        <span th:if="${pageNum} lt 2">上一页</span>
+    </li>
+    <li th:each="i:${#numbers.sequence(1,totalPages)}">
+        <a th:href="@{ ${path} + ${i} + '/' + ${pageSize} }" th:text="${i}">xxx</a>
+    </li>
+    <li>
+        <a th:if="${pageNum} lt ${totalPages}" th:href="@{ ${path} + ${pageNum + 1}+'/' + ${pageSize} }">下一页</a>
+        <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
+    </li>
+</ul>
+
+
+<!-- 页脚 -->
 <div th:fragment="common_footer" class="footer">
     <div>
         <p>Copyright Suzhou keleqi arts and crafts co., LTD. 2021-2031</p>

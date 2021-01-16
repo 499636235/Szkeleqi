@@ -3,6 +3,7 @@ package com.suzhoukeleqi.Controller;
 import com.suzhoukeleqi.Service.IMailService;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.entity.IndexProduct;
+import com.suzhoukeleqi.entity.PageRequest;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +64,17 @@ public class WelcomeController {
     public String goToTest(ModelMap modelMap) {
         modelMap.addAttribute("msg", "shit");
         return "test";
+    }
+
+    /**
+     * 测试 thymeleaf 与 ajax 的异步更新
+     *
+     * @return
+     */
+    @RequestMapping("/testajax")
+    public String goToTestAjax(ModelMap modelMap) {
+        modelMap.addAttribute("msg", "ohhhhhhhhhhhhh");
+        return "test::reflash";
     }
 
     /**
@@ -140,6 +152,26 @@ public class WelcomeController {
     @RequestMapping("/search")
     public String goToSearch() {
         return "search";
+    }
+
+    /**
+     * 通用页面
+     * 只是为了防止 common.html 报红，实际上是重定向到 index
+     *
+     * @return
+     */
+    @RequestMapping("/common")
+    public String goToCommon(ModelMap modelMap, PageRequest pageRequest) {
+        if (true) {
+            return "redirect:/index";
+        }
+        modelMap.addAttribute("path", "");
+        modelMap.addAttribute("pageNum", "");
+        modelMap.addAttribute("pageSize", "");
+        modelMap.addAttribute("totalPages", "");
+        modelMap.addAttribute("totalSize", "");
+
+        return "common";
     }
 
 

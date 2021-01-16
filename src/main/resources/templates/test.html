@@ -20,6 +20,20 @@
         //     $("#dropdownMenu1").show();
         // });
     });
+
+
+    function test() {
+
+        $.post(
+            "/testajax",
+            "",
+            function (data) {
+                console.log(data);
+                $("#refalsh").html(data);
+            }
+        )
+    }
+
 </script>
 <head>
     <meta charset="UTF-8">
@@ -102,6 +116,9 @@
     console.log(user);
     console.log(age)
 </script>
+
+<button onclick="test()">哈哈</button>
+<span id="refalsh" th:fragment="reflash" th:text="${msg}"></span>
 
 </body>
 </html>

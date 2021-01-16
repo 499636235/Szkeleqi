@@ -31,7 +31,7 @@ public class ProductController {
      */
     @RequestMapping("/product/product_detail/{id}")
     @ResponseBody
-    public String GetProductDetail(@PathVariable int id) {
+    public String GetProductDetail(@PathVariable int id,ModelMap modelMap) {
         Product product = productService.selectProductById(id);
         return product.getPicture();
     }
@@ -58,10 +58,14 @@ public class ProductController {
      */
     @RequestMapping("/product/all/{pageNum}/{pageSize}")
     public String selectPagesFromProduct(PageRequest pageRequest, ModelMap modelMap) {
+
+        modelMap.addAttribute("path", "/product/all/");
+
         PageResult pageResult = productService.selectAllProductsPages(pageRequest);
         List<IndexProduct> indexProductList = (List<IndexProduct>) pageResult.getContent();
         String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
         modelMap.addAttribute("indexProductList", indexProductListJSONArray);
+        modelMap.addAttribute("iplist", indexProductList);
         modelMap.addAttribute("pageNum",pageResult.getPageNum());
         modelMap.addAttribute("pageSize",pageResult.getPageSize());
         modelMap.addAttribute("totalPages",pageResult.getTotalPages());
