@@ -6,7 +6,7 @@
         <!--<head th:fragment="common_header(title,links)">-->
         <!--<title th:replace="${title}">The awesome application</title>-->
 
-        <!--共用的title-->
+        <!-- 共用的title -->
         <title>苏州科乐奇</title>
 
         <!-- 共用的jQuery,css,js -->
@@ -14,50 +14,21 @@
         <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-        <!--导入共用的样式表css-->
+        <!-- 导入共用的样式表css -->
         <link href="/css/common.css" rel="stylesheet" type="text/css"/>
 
         <!-- 额外添加的链接 -->
         <!--<th:block th:replace="${links}" />-->
-
-        <!--共用的JavaScript-->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //html文件的路径名，如："/index/first"
-                var pathname = window.location.pathname;
-                //console.log(pathname);
-
-                // 如果是根目录"/"
-                if (pathname == "/index") {
-                    // 激活主页
-                    $("#index").addClass("active");
-                    console.log("欢迎访问苏州科乐奇工艺品有限公司的首页！");
-                    return;
-                }
-
-                //第二个斜杠"/"的位置，如："/index/first" 获得的位置是6
-                var secondSlashIndex = pathname.indexOf("/", 1);
-                // console.log(secondSlashIndex);
-
-                //如果有第二个斜杠
-                if (secondSlashIndex > 0) {
-                    // 使用两个斜杠中间的字符作为pathname
-                    pathname = pathname.substr(1, secondSlashIndex - 1);
-                } else {
-                    //否则使用斜杠后面的字符作为pathname
-                    pathname = pathname.substr(1, pathname.length - 1);
-                }
-                // console.log(pathname);
-                // 激活相应的导航栏标签
-                $("#" + pathname).addClass("active");
-
-
-            });
-        </script>
     </th:block>
+
+    <!-- 共用的JavaScript -->
+    <!-- 引入js文件 -->
+    <script src="/js/common.js" type="text/javascript"></script>
+
 </head>
 
 <body>
+
 <!-- 导航栏 -->
 <nav th:fragment="common_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -65,13 +36,14 @@
             <a class="navbar-brand" href="#">苏州科乐奇</a>
         </div>
         <div>
-            <ul class="nav navbar-nav navbar-right">
-                <li id="test" class="margin-right-20"><a href="/test" data-target="/test">测试</a></li>
+            <ul id="nav_ul" class="nav navbar-nav navbar-right">
+                <li id="test"><a href="/nav/test" data-target="/test">测试</a></li>
 
-                <li id="index" class="margin-right-20"><a href="/index">首页</a></li>
-                <li id="about" class="margin-right-20"><a href="/about">关于科乐奇</a></li>
-                <li id="product" class="dropdown margin-right-20">
-                    <a id="a3" href="/product" class="dropdown-toggle" data-toggle="dropdown">
+                <li id="index" th:classappend=" ${pagename} == 'index' ? 'active' : '' "><a
+                        href="/nav/index">首页</a></li>
+                <li id="about" th:classappend=" ${pagename} == 'about' ? 'active' : '' "><a href="/nav/about">关于科乐奇</a></li>
+                <li id="product" class="dropdown" th:classappend=" ${pagename} == 'product' ? 'active' : '' ">
+                    <a id="a3" href="/nav/product" class="dropdown-toggle" data-toggle="dropdown">
                         产品中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -82,23 +54,24 @@
                         <li><a href="/product/class1/Toy">玩具</a></li>
                     </ul>
                 </li>
-                <li id="news" class="dropdown margin-right-20">
-                    <a href="/news" class="dropdown-toggle" data-toggle="dropdown">
+                <li id="news" class="dropdown" th:classappend=" ${pagename} == 'news' ? 'active' : '' ">
+                    <a href="/nav/news" class="dropdown-toggle" data-toggle="dropdown">
                         新闻中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/news">公司动态</a></li>
-                        <li><a href="/news">行业资讯</a></li>
+                        <li><a href="/nav/news">公司动态</a></li>
+                        <li><a href="/nav/news">行业资讯</a></li>
                     </ul>
                 </li>
-                <li id="case" class="margin-right-20"><a href="/case">合作客户</a></li>
-                <li id="contact" class="margin-right-20"><a href="/contact">联系我们</a></li>
-                <li id="search" class="margin-right-20"><a href="/search"><span
+                <li id="case" th:classappend=" ${pagename} == 'case' ? 'active' : '' "><a href="/nav/case">合作客户</a></li>
+                <li id="contact" th:classappend=" ${pagename} == 'contact' ? 'active' : '' "><a href="/nav/contact">联系我们</a></li>
+                <li id="search" th:classappend=" ${pagename} == 'search' ? 'active' : '' "><a href="/nav/search"><span
                         class="glyphicon glyphicon-search"></span></a></li>
             </ul>
         </div>
     </div>
 </nav>
+
 <!-- 轮播(旋转木马carousel) -->
 <div th:fragment="common_carousel" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -139,6 +112,36 @@
 
 </div>
 
+<!-- 缩略图片列表 -->
+<div th:fragment="common_piclist" class="picture-box">
+    <div class="container-fluid">
+        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom"
+             data-repeat="false">
+            <h3>产品中心</h3>
+            <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
+        </div>
+        <div class="picture-list">
+            <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
+
+                <li th:each="ip:${indexProductList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
+                    class=\"animation-slide-bottom\">
+                    <a th:href="@{ '/product/' + ${ip.product_id} }">
+                        <p>
+                            <img th:src="@{ ${ip.picture} }" th:alt="${ip.name}" style="display:inline;">
+                        </p>
+                        <span th:text="${ip.name}"></span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- 分页 按钮组 -->
+    <th:block th:replace="common :: common_pager"></th:block>
+
+</div>
 
 <!-- 分页 按钮组 -->
 <ul th:fragment="common_pager" class="pagination" th:if="${pageNum!=null?true:false}">

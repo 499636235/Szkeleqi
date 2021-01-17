@@ -7,19 +7,18 @@
     <!--thymeleaf代码块功能 导入共用link-->
     <th:block th:replace="common :: common_link"></th:block>
     <!--导入样式表-->
-    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/css/product_detail.css" rel="stylesheet" type="text/css"/>
     <!--JavaScript-->
     <script type="text/javascript">
 
         //JQuery的Ajax用法
         $(function () {
             console.log("/product/product_detail/" + [[${id}]]);
-            $.post("/product/product_detail/" + [[${id}]] , function (data) {
+            $.post("/product/product_detail/" + [[${id}]], function (data) {
                 $('#img1').attr("src", data);
                 console.log("加载图片成功！：" + data);
             })
         })
-
 
 
     </script>
@@ -27,7 +26,6 @@
 <body>
 <!--导航栏-->
 <th:block th:replace="common :: common_nav"></th:block>
-
 
 
 <div id="divtest">
