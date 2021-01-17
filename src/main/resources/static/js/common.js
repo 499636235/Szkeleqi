@@ -33,3 +33,7 @@ $(function () {
 
 
 });
+
+function diyPageSize() {
+$("#diya").attr('href',"/product/all/" + "1" + "/" + $("#diyPageSize").val());
+}

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductListItem {
-    private Integer ListIndex;
-    private Integer ProductId;
-    private String ProductName;
-    private String PicturePath;
+    private Integer listIndex;
+    private Integer productId;
+    private String productName;
+    private String picturePath;
 }

@@ -13,6 +13,7 @@
         var indexProductList = "[[${indexProductListJSONArray}]]";
     </script>
     <!-- 引入js文件 -->
+    <script src="/js/common.js" type="text/javascript"></script>
     <script src="/js/product.js" type="text/javascript"></script>
 
 </head>
@@ -22,7 +23,7 @@
 <th:block th:replace="common :: common_nav"></th:block>
 
 <!-- 缩略图片列表 -->
-<th:block th:replace="common :: common_piclist"></th:block>
+<th:block th:replace="common :: common_picbox"></th:block>
 
 <!-- 页脚 -->
 <th:block th:replace="common :: common_footer"></th:block>

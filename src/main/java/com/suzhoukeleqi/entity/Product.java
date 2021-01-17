@@ -7,13 +7,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    private Integer ProductId;
-    private String ProductClass1;
-    private String ProductClass2;
-    private String ProductClass3;
-    private String ProductName;
-    private String PictureName;
-    private String PicturePath;
-    private String CreateDate;
-    private String UpdateDate;
+    private Integer productId;
+    private String productClass1;
+    private String productClass2;
+    private String productClass3;
+    private String productName;
+    private String pictureName;
+    private String picturePath;
+    private String createDate;
+    private String updateDate;
 }

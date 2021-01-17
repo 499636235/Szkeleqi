@@ -39,12 +39,12 @@
                 // 新建一行
                 var tr = $("<tr/>");
                 // 依次插入这一行内的每列
-                $("<td/>").html(productList[k].id).appendTo(tr);
-                $("<td/>").html(productList[k].class1).appendTo(tr);
-                $("<td/>").html(productList[k].class2).appendTo(tr);
-                $("<td/>").html(productList[k].class3).appendTo(tr);
-                $("<td/>").html(productList[k].name).appendTo(tr);
-                $("<td/>").html(productList[k].picture).appendTo(tr);
+                $("<td/>").html(productList[k].productId).appendTo(tr);
+                $("<td/>").html(productList[k].productClass1).appendTo(tr);
+                $("<td/>").html(productList[k].productClass2).appendTo(tr);
+                $("<td/>").html(productList[k].productClass3).appendTo(tr);
+                $("<td/>").html(productList[k].productName).appendTo(tr);
+                $("<td/>").html(productList[k].picturePath).appendTo(tr);
                 // 将该行加入表格中
                 tb.append(tr);
             }

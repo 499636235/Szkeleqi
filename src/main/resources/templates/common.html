@@ -10,9 +10,14 @@
         <title>苏州科乐奇</title>
 
         <!-- 共用的jQuery,css,js -->
-        <script src="/webjars/jquery/1.9.1/jquery.min.js"></script>
-        <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!--        上线以后使用 min 可以提高响应速度-->
+        <!--        <script src="/webjars/jquery/1.9.1/jquery.min.js"></script>-->
+        <!--        <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">-->
+        <!--        <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+        <!--        开发时不使用 min 方便查看源码-->
+        <script src="/webjars/jquery/1.9.1/jquery.js"></script>
+        <link href="/webjars/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+        <script src="/webjars/bootstrap/3.3.5/js/bootstrap.js"></script>
 
         <!-- 导入共用的样式表css -->
         <link href="/css/common.css" rel="stylesheet" type="text/css"/>
@@ -41,7 +46,8 @@
 
                 <li id="index" th:classappend=" ${pagename} == 'index' ? 'active' : '' "><a
                         href="/nav/index">首页</a></li>
-                <li id="about" th:classappend=" ${pagename} == 'about' ? 'active' : '' "><a href="/nav/about">关于科乐奇</a></li>
+                <li id="about" th:classappend=" ${pagename} == 'about' ? 'active' : '' "><a href="/nav/about">关于科乐奇</a>
+                </li>
                 <li id="product" class="dropdown" th:classappend=" ${pagename} == 'product' ? 'active' : '' ">
                     <a id="a3" href="/nav/product" class="dropdown-toggle" data-toggle="dropdown">
                         产品中心 <b class="caret"></b>
@@ -64,7 +70,8 @@
                     </ul>
                 </li>
                 <li id="case" th:classappend=" ${pagename} == 'case' ? 'active' : '' "><a href="/nav/case">合作客户</a></li>
-                <li id="contact" th:classappend=" ${pagename} == 'contact' ? 'active' : '' "><a href="/nav/contact">联系我们</a></li>
+                <li id="contact" th:classappend=" ${pagename} == 'contact' ? 'active' : '' "><a
+                        href="/nav/contact">联系我们</a></li>
                 <li id="search" th:classappend=" ${pagename} == 'search' ? 'active' : '' "><a href="/nav/search"><span
                         class="glyphicon glyphicon-search"></span></a></li>
             </ul>
@@ -113,8 +120,8 @@
 </div>
 
 <!-- 缩略图片列表 -->
-<div th:fragment="common_piclist" class="picture-box">
-    <div class="container-fluid">
+<div th:fragment="common_picbox" class="picture-box">
+    <div th:fragment="common_picbox_container" class="container-fluid">
         <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom"
              data-repeat="false">
             <h3>产品中心</h3>
@@ -125,11 +132,11 @@
 
                 <li th:each="p:${productList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
                     class=\"animation-slide-bottom\">
-                    <a th:href="@{ '/product/' + ${p.ProductId} }">
+                    <a th:href="@{ '/product/' + ${p.productId} }">
                         <p>
-                            <img th:src="@{ ${p.PicturePath} }" th:alt="${p.ProductName}" style="display:inline;">
+                            <img th:src="@{ ${p.picturePath} }" th:alt="${p.productName}" style="display:inline;">
                         </p>
-                        <span th:text="${p.ProductName}"></span>
+                        <span th:text="${p.productName}"></span>
                     </a>
                 </li>
 
@@ -137,6 +144,18 @@
         </div>
 
     </div>
+
+    <!-- diy 分页 -->
+    <form class="form-inline" th:if="${pageNum!=null?true:false}">
+        <div class="form-group">
+            <span>每页显示</span>
+            <input id="diyPageSize" type="text" class="form-control" placeholder="xxx" th:value="${pageSize}"
+                   style="width: 40px">
+            <span>个项目</span>
+        </div>
+        <a id="diya" class="btn btn-default" onclick="diyPageSize()">重新分页</a>
+    </form>
+
 
     <!-- 分页 按钮组 -->
     <th:block th:replace="common :: common_pager"></th:block>

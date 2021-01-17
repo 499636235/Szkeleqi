@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<ProductListItem> indexProductList = productMapper.selectAllProductsPages();
-        return new PageInfo<ProductListItem>(indexProductList);
+        return new PageInfo<>(indexProductList);
     }
 
     @Override
@@ -87,6 +87,6 @@ public class ProductServiceImpl implements ProductService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<Product> productList = productMapper.selectPagesFromProduct();
-        return new PageInfo<Product>(productList);
+        return new PageInfo<>(productList);
     }
 }
