@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IndexProduct {
-    private Integer priority;
-    private Integer product_id;
-    private String name;
-    private String picture;
+public class ProductListItem {
+    private Integer ListIndex;
+    private Integer ProductId;
+    private String ProductName;
+    private String PicturePath;
 }

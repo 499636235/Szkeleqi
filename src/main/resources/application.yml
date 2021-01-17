@@ -16,24 +16,26 @@ server:
 info:
   name : "科乐奇"
 
-
+# 数据库等密码通过 jasypt 加密，密钥为 jasypt.encryptor.password ，配置在本地运行时参数中；如果打包则需要另外配置(见下面的链接)
+# https://www.cnblogs.com/toutou/p/Jasypt.html
+# 密码提示：我和唐子gay牛逼
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/szklq?characterEncoding=utf-8&serverTimezone=GMT%2B8
-    username: root
-    password: njytzj6B
+    username: ENC(qulENClCew1FZOjNP/Rw9w==)
+    password: ENC(oCYgc7ZLS28+ewutaAEd9K1bO7Wk+evj)
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
-##热部署
+# 热部署
 #  devtools:
 #    restart:
 #      enabled: true
 
-## QQ邮箱配置
-## 代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
+# QQ邮箱配置
+# 代码参考: https://www.cnblogs.com/smfx1314/archive/2004/01/13/10332329.html
   mail:
     host: smtp.qq.com #发送邮件服务器
     username: 499636235@qq.com #发送邮件的邮箱地址
@@ -47,10 +49,12 @@ spring:
   properties.mail.smtp.ssl.enable: true
   default-encoding: utf-8
 
+# Mybatis
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: com.suzhoukeleqi.entity
 
+# 日志
 logging:
   level:
     com.suzhoukeleqi: debug
@@ -64,7 +68,6 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
 
 
 

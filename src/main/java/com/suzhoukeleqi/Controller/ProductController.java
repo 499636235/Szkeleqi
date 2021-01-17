@@ -1,10 +1,7 @@
 package com.suzhoukeleqi.Controller;
 
 import com.suzhoukeleqi.Service.ProductService;
-import com.suzhoukeleqi.entity.IndexProduct;
-import com.suzhoukeleqi.entity.PageRequest;
-import com.suzhoukeleqi.entity.PageResult;
-import com.suzhoukeleqi.entity.Product;
+import com.suzhoukeleqi.entity.*;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,7 +46,7 @@ public class ProductController {
     @ResponseBody
     public String GetProductDetail(@PathVariable int id,Model model) {
         Product product = productService.selectProductById(id);
-        return product.getPicture();
+        return product.getPicturePath();
     }
 
     /**
@@ -61,9 +58,9 @@ public class ProductController {
     @RequestMapping("/product/all")
     public String selectAllProducts(Model model) {
         commonModelOperation(model);
-        List<IndexProduct> indexProductList = productService.selectAllProducts();
-        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
-        model.addAttribute("indexProductList", indexProductListJSONArray);
+        List<ProductListItem> productList = productService.selectAllProducts();
+        String productListJSONArray = JSONArray.fromObject(productList).toString();
+        model.addAttribute("productList", productListJSONArray);
         return "product";
     }
 
@@ -79,10 +76,10 @@ public class ProductController {
         model.addAttribute("path", "/product/all/");
 
         PageResult pageResult = productService.selectAllProductsPages(pageRequest);
-        List<IndexProduct> indexProductList = (List<IndexProduct>) pageResult.getContent();
-//        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
-//        model.addAttribute("indexProductListJSONArray", indexProductListJSONArray);
-        model.addAttribute("indexProductList", indexProductList);
+        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
+//        String productListJSONArray = JSONArray.fromObject(productList).toString();
+//        model.addAttribute("productListJSONArray", productListJSONArray);
+        model.addAttribute("productList", productList);
         model.addAttribute("pageNum",pageResult.getPageNum());
         model.addAttribute("pageSize",pageResult.getPageSize());
         model.addAttribute("totalPages",pageResult.getTotalPages());
@@ -100,8 +97,8 @@ public class ProductController {
     @RequestMapping("/product/class1/{class1}")
     public String selectProductListByclass1(@PathVariable String class1, Model model) {
         commonModelOperation(model);
-        List<IndexProduct> indexProductList = productService.selectProductListByclass1(class1);
-        model.addAttribute("indexProductList", indexProductList);
+        List<ProductListItem> productList = productService.selectProductListByclass1(class1);
+        model.addAttribute("productList", productList);
         return "product";
     }
 
@@ -115,8 +112,8 @@ public class ProductController {
     @RequestMapping("/product/class2/{class2}")
     public String selectProductListByclass2(@PathVariable String class2, Model model) {
         commonModelOperation(model);
-        List<IndexProduct> indexProductList = productService.selectProductListByclass2(class2);
-        model.addAttribute("indexProductList", indexProductList);
+        List<ProductListItem> productList = productService.selectProductListByclass2(class2);
+        model.addAttribute("productList", productList);
         return "product";
     }
 

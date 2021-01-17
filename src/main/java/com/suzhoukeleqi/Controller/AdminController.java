@@ -106,10 +106,10 @@ public class AdminController {
         List<Product> productList = (List<Product>) pageResult.getContent();
         String productListJSONArray = JSONArray.fromObject(productList).toString();
         modelMap.addAttribute("productList", productListJSONArray);
-        modelMap.addAttribute("pageNum",pageResult.getPageNum());
-        modelMap.addAttribute("pageSize",pageResult.getPageSize());
-        modelMap.addAttribute("totalPages",pageResult.getTotalPages());
-        modelMap.addAttribute("totalSize",pageResult.getTotalSize());
+        modelMap.addAttribute("pageNum", pageResult.getPageNum());
+        modelMap.addAttribute("pageSize", pageResult.getPageSize());
+        modelMap.addAttribute("totalPages", pageResult.getTotalPages());
+        modelMap.addAttribute("totalSize", pageResult.getTotalSize());
         return "admin_index";
     }
 

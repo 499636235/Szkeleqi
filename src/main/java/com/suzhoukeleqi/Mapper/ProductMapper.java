@@ -1,7 +1,7 @@
 package com.suzhoukeleqi.Mapper;
 
-import com.suzhoukeleqi.entity.IndexProduct;
 import com.suzhoukeleqi.entity.Product;
+import com.suzhoukeleqi.entity.ProductListItem;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.List;
 public interface ProductMapper {
     Product selectProductById(int id);
 
-    List<IndexProduct> selectIndexProductList();
+    List<ProductListItem> selectProductListByListId(int listid);
 
-    List<IndexProduct> selectProductListByclass1(String class1);
+    List<ProductListItem> selectProductListByclass1(String class1);
 
-    List<IndexProduct> selectProductListByclass2(String class2);
+    List<ProductListItem> selectProductListByclass2(String class2);
 
-    List<IndexProduct> selectAllProducts();
+    List<ProductListItem> selectAllProducts();
 
-    List<IndexProduct> selectAllProductsPages();
+    List<ProductListItem> selectAllProductsPages();
 
     List<Product> selectAllFromProduct();
 

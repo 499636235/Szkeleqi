@@ -123,13 +123,13 @@
         <div class="picture-list">
             <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
 
-                <li th:each="ip:${indexProductList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
+                <li th:each="p:${productList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
                     class=\"animation-slide-bottom\">
-                    <a th:href="@{ '/product/' + ${ip.product_id} }">
+                    <a th:href="@{ '/product/' + ${p.ProductId} }">
                         <p>
-                            <img th:src="@{ ${ip.picture} }" th:alt="${ip.name}" style="display:inline;">
+                            <img th:src="@{ ${p.PicturePath} }" th:alt="${p.ProductName}" style="display:inline;">
                         </p>
-                        <span th:text="${ip.name}"></span>
+                        <span th:text="${p.ProductName}"></span>
                     </a>
                 </li>
 

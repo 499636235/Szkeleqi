@@ -1,8 +1,8 @@
 package com.suzhoukeleqi.Controller;
 
 import com.suzhoukeleqi.Service.ProductService;
-import com.suzhoukeleqi.entity.IndexProduct;
 import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.ProductListItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class CommonController {
         model.addAttribute("pageSize", "");
         model.addAttribute("totalPages", "");
         model.addAttribute("totalSize", "");
-        model.addAttribute("indexProductList", new ArrayList<IndexProduct>());
+        model.addAttribute("productList", new ArrayList<ProductListItem>());
         return "common";
     }
 
@@ -88,8 +88,8 @@ public class CommonController {
         // 如果是首页
         if (model.getAttribute("pagename").equals("index")) {
             // 首页参数
-            List<IndexProduct> indexProductList = productService.selectIndexProductList();
-            model.addAttribute("indexProductList", indexProductList);
+            List<ProductListItem> productList = productService.selectProductListByListId(1);
+            model.addAttribute("productList", productList);
 //        String indexProductListJSONArray = JSONArray.fromObject(indexProductList).toString();
 //        model.addAttribute("indexProductList", indexProductListJSONArray);
 //        logger.debug(indexProductListJSONArray);

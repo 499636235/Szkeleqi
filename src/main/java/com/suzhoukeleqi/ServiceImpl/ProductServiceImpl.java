@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.suzhoukeleqi.Mapper.ProductMapper;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.Utils.PageUtils;
-import com.suzhoukeleqi.entity.IndexProduct;
-import com.suzhoukeleqi.entity.PageRequest;
-import com.suzhoukeleqi.entity.PageResult;
-import com.suzhoukeleqi.entity.Product;
+import com.suzhoukeleqi.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,22 +22,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<IndexProduct> selectIndexProductList() {
-        return productMapper.selectIndexProductList();
+    public List<ProductListItem> selectProductListByListId(int listid) {
+        return productMapper.selectProductListByListId(listid);
     }
 
     @Override
-    public List<IndexProduct> selectProductListByclass1(String class1) {
+    public List<ProductListItem> selectProductListByclass1(String class1) {
         return productMapper.selectProductListByclass1(class1);
     }
 
     @Override
-    public List<IndexProduct> selectProductListByclass2(String class2) {
+    public List<ProductListItem> selectProductListByclass2(String class2) {
         return productMapper.selectProductListByclass2(class2);
     }
 
     @Override
-    public List<IndexProduct> selectAllProducts() {
+    public List<ProductListItem> selectAllProducts() {
         return productMapper.selectAllProducts();
     }
 
@@ -51,15 +48,16 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 调用分页插件完成分页
+     *
      * @param pageRequest
      * @return
      */
-    private PageInfo<IndexProduct> getPageInfo2(PageRequest pageRequest) {
+    private PageInfo<ProductListItem> getPageInfo2(PageRequest pageRequest) {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        List<IndexProduct> indexProductList = productMapper.selectAllProductsPages();
-        return new PageInfo<IndexProduct>(indexProductList);
+        List<ProductListItem> indexProductList = productMapper.selectAllProductsPages();
+        return new PageInfo<ProductListItem>(indexProductList);
     }
 
     @Override
@@ -69,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 分页查询全部产品
+     *
      * @param pageRequest
      * @return
      */
@@ -79,6 +78,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 调用分页插件完成分页
+     *
      * @param pageRequest
      * @return
      */
