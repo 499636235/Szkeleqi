@@ -6,15 +6,21 @@ import com.suzhoukeleqi.Mapper.ProductMapper;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.Utils.PageUtils;
 import com.suzhoukeleqi.entity.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductMapper productMapper;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public Product selectProductById(int id) {
@@ -26,14 +32,19 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectProductListByListId(listid);
     }
 
+
     @Override
-    public List<ProductListItem> selectProductListByclass1(String class1) {
-        return productMapper.selectProductListByclass1(class1);
+    public PageResult selectProductListByclass1(PageRequest pageRequest, String class1) {
+        ProductMapperRequest object = new ProductMapperRequest();
+        object.setClass1(class1);
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass1", object));
     }
 
     @Override
-    public List<ProductListItem> selectProductListByclass2(String class2) {
-        return productMapper.selectProductListByclass2(class2);
+    public PageResult selectProductListByclass2(PageRequest pageRequest, String class2) {
+        ProductMapperRequest object = new ProductMapperRequest();
+        object.setClass1(class2);
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass2", object));
     }
 
     @Override
@@ -43,22 +54,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public PageResult selectAllProductsPages(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo2(pageRequest));
+        ProductMapperRequest object = new ProductMapperRequest();
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectAllProductsPages", object));
     }
 
-    /**
-     * 调用分页插件完成分页
-     *
-     * @param pageRequest
-     * @return
-     */
-    private PageInfo<ProductListItem> getPageInfo2(PageRequest pageRequest) {
-        int pageNum = pageRequest.getPageNum();
-        int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
-        List<ProductListItem> indexProductList = productMapper.selectAllProductsPages();
-        return new PageInfo<>(indexProductList);
-    }
 
     @Override
     public List<Product> selectAllFromProduct() {
@@ -73,20 +72,36 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public PageResult selectPagesFromProduct(PageRequest pageRequest) {
-        return PageUtils.getPageResult(getPageInfo(pageRequest));
+        ProductMapperRequest object = new ProductMapperRequest();
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectPagesFromProduct", object));
+
     }
 
+
     /**
-     * 调用分页插件完成分页
+     * (通用)调用分页插件完成分页
+     * 通过反射调用 Mapper 的方法，减少代码
      *
      * @param pageRequest
      * @return
      */
-    private PageInfo<Product> getPageInfo(PageRequest pageRequest) {
+    private PageInfo<?> getPageInfo(PageRequest pageRequest, String methodname, Object object) {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
-        List<Product> productList = productMapper.selectPagesFromProduct();
-        return new PageInfo<>(productList);
+        Method method = null;
+        try {
+            method = productMapper.getClass().getDeclaredMethod(methodname, object.getClass());
+            PageHelper.startPage(pageNum, pageSize);
+            List<?> resultList = (List<?>) method.invoke(productMapper, object);
+            return new PageInfo<>(resultList);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

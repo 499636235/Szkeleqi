@@ -3,6 +3,8 @@ package com.suzhoukeleqi.Controller;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.entity.*;
 import net.sf.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ public class ProductController {
     @Qualifier("productServiceImpl")
     ProductService productService;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 产品详情页面
@@ -44,7 +47,7 @@ public class ProductController {
      */
     @RequestMapping("/product/product_detail/{id}")
     @ResponseBody
-    public String GetProductDetail(@PathVariable int id,Model model) {
+    public String GetProductDetail(@PathVariable int id, Model model) {
         Product product = productService.selectProductById(id);
         return product.getPicturePath();
     }
@@ -80,10 +83,10 @@ public class ProductController {
 //        String productListJSONArray = JSONArray.fromObject(productList).toString();
 //        model.addAttribute("productListJSONArray", productListJSONArray);
         model.addAttribute("productList", productList);
-        model.addAttribute("pageNum",pageResult.getPageNum());
-        model.addAttribute("pageSize",pageResult.getPageSize());
-        model.addAttribute("totalPages",pageResult.getTotalPages());
-        model.addAttribute("totalSize",pageResult.getTotalSize());
+        model.addAttribute("pageNum", pageResult.getPageNum());
+        model.addAttribute("pageSize", pageResult.getPageSize());
+        model.addAttribute("totalPages", pageResult.getTotalPages());
+        model.addAttribute("totalSize", pageResult.getTotalSize());
         return "product";
     }
 
@@ -94,11 +97,18 @@ public class ProductController {
      * @param model
      * @return
      */
-    @RequestMapping("/product/class1/{class1}")
-    public String selectProductListByclass1(@PathVariable String class1, Model model) {
+    @RequestMapping("/product/class1/{class1}/{pageNum}/{pageSize}")
+    public String selectProductListByclass1(PageRequest pageRequest, @PathVariable String class1, Model model) {
         commonModelOperation(model);
-        List<ProductListItem> productList = productService.selectProductListByclass1(class1);
+        model.addAttribute("path", "/product/class1/" + class1 + "/");
+
+        PageResult pageResult = productService.selectProductListByclass1(pageRequest, class1);
+        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
         model.addAttribute("productList", productList);
+        model.addAttribute("pageNum", pageResult.getPageNum());
+        model.addAttribute("pageSize", pageResult.getPageSize());
+        model.addAttribute("totalPages", pageResult.getTotalPages());
+        model.addAttribute("totalSize", pageResult.getTotalSize());
         return "product";
     }
 
@@ -109,19 +119,27 @@ public class ProductController {
      * @param model
      * @return
      */
-    @RequestMapping("/product/class2/{class2}")
-    public String selectProductListByclass2(@PathVariable String class2, Model model) {
+    @RequestMapping("/product/class2/{class2}/{pageNum}/{pageSize}")
+    public String selectProductListByclass2(PageRequest pageRequest, @PathVariable String class2, Model model) {
         commonModelOperation(model);
-        List<ProductListItem> productList = productService.selectProductListByclass2(class2);
+        model.addAttribute("path", "/product/class2/" + class2 + "/");
+
+        PageResult pageResult = productService.selectProductListByclass2(pageRequest, class2);
+        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
         model.addAttribute("productList", productList);
+        model.addAttribute("pageNum", pageResult.getPageNum());
+        model.addAttribute("pageSize", pageResult.getPageSize());
+        model.addAttribute("totalPages", pageResult.getTotalPages());
+        model.addAttribute("totalSize", pageResult.getTotalSize());
         return "product";
     }
 
     /**
      * 共同 Model 操作
+     *
      * @param model
      */
-    private void commonModelOperation(Model model){
+    private void commonModelOperation(Model model) {
         model.addAttribute("pagename", "product");
     }
 }
