@@ -5,7 +5,10 @@ import com.github.pagehelper.PageInfo;
 import com.suzhoukeleqi.Mapper.ProductMapper;
 import com.suzhoukeleqi.Service.ProductService;
 import com.suzhoukeleqi.Utils.PageUtils;
-import com.suzhoukeleqi.entity.*;
+import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.PageResult;
+import com.suzhoukeleqi.entity.Product;
+import com.suzhoukeleqi.entity.ProductListItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -29,39 +33,30 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductListItem> selectProductListByListId(int listid) {
-        return productMapper.selectProductListByListId(listid);
+        HashMap map = new HashMap();
+        map.put("listid", listid);
+        return productMapper.selectProductListByListId(map);
     }
 
 
     @Override
     public PageResult selectProductListByclass1(PageRequest pageRequest, String class1) {
-        ProductMapperRequest object = new ProductMapperRequest();
-        object.setClass1(class1);
-        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass1", object));
+        HashMap map = new HashMap();
+        map.put("class1", class1);
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass1", map));
     }
 
     @Override
     public PageResult selectProductListByclass2(PageRequest pageRequest, String class2) {
-        ProductMapperRequest object = new ProductMapperRequest();
-        object.setClass1(class2);
-        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass2", object));
-    }
-
-    @Override
-    public List<ProductListItem> selectAllProducts() {
-        return productMapper.selectAllProducts();
+        HashMap map = new HashMap();
+        map.put("class2", class2);
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectProductListByclass2", map));
     }
 
     @Override
     public PageResult selectAllProductsPages(PageRequest pageRequest) {
-        ProductMapperRequest object = new ProductMapperRequest();
-        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectAllProductsPages", object));
-    }
-
-
-    @Override
-    public List<Product> selectAllFromProduct() {
-        return productMapper.selectAllFromProduct();
+        HashMap map = new HashMap();
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectAllProductsPages", map));
     }
 
     /**
@@ -72,11 +67,10 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public PageResult selectPagesFromProduct(PageRequest pageRequest) {
-        ProductMapperRequest object = new ProductMapperRequest();
-        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectPagesFromProduct", object));
+        HashMap map = new HashMap();
+        return PageUtils.getPageResult(getPageInfo(pageRequest, "selectPagesFromProduct", map));
 
     }
-
 
     /**
      * (通用)调用分页插件完成分页

@@ -37,3 +37,15 @@ $(function () {
 function diyPageSize() {
 $("#diya").attr('href',"/product/all/" + "1" + "/" + $("#diyPageSize").val());
 }
+
+function test() {
+
+    $.post(
+        "/product/all/ajax/1/8",
+        "",
+        function (data) {
+            console.log(data);
+            $("#reflash_li").html(data);
+        }
+    )
+}

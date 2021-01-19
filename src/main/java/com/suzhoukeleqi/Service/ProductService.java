@@ -36,24 +36,11 @@ public interface ProductService {
     PageResult selectProductListByclass2(PageRequest pageRequest, String class2);
 
     /**
-     * 查询全部产品
-     * @return
-     */
-    List<ProductListItem> selectAllProducts();
-
-    /**
      * 分页查询全部产品
      * @param pageRequest
      * @return
      */
     PageResult selectAllProductsPages(PageRequest pageRequest);
-
-    /**
-     * 查询全表(后台用)
-     *
-     * @return
-     */
-    List<Product> selectAllFromProduct();
 
     /**
      * 分页查询全表(后台用)

@@ -122,15 +122,14 @@
 <!-- 缩略图片列表 -->
 <div th:fragment="common_picbox" class="picture-box">
     <div th:fragment="common_picbox_container" class="container-fluid">
-        <div class="title-box animation-slide-bottom appear-no-repeat" data-plugin="appear" data-animate="slide-bottom"
-             data-repeat="false">
-            <h3>产品中心</h3>
+        <div class="title-box">
+            <h3>产品展示</h3>
             <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
         </div>
         <div class="picture-list">
             <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
 
-                <li th:each="p:${productList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
+                <li id="reflash_li" th:fragment="reflash" th:each="p:${productList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
                     class=\"animation-slide-bottom\">
                     <a th:href="@{ '/product/' + ${p.productId} }">
                         <p>
@@ -141,9 +140,13 @@
                 </li>
 
             </ul>
+
         </div>
 
+
+
     </div>
+
 
     <!-- diy 分页 -->
     <form class="form-inline" th:if="${pageNum!=null?true:false}">
@@ -164,6 +167,10 @@
 
 <!-- 分页 按钮组 -->
 <ul th:fragment="common_pager" class="pagination" th:if="${pageNum!=null?true:false}">
+    <li>
+        <a onclick="test()">test</a>
+    </li>
+
     <li>
         <a th:if="${pageNum} gt 1" th:href="@{ ${path} + ${pageNum - 1} + '/' + ${pageSize} }">上一页</a>
         <span th:if="${pageNum} lt 2">上一页</span>

@@ -77,19 +77,6 @@ public class AdminController {
         return "admin_index";
     }
 
-    /**
-     * 查询产品全表
-     *
-     * @param modelMap
-     * @return
-     */
-//    @RequestMapping("/admin/admin_index/product")
-//    public String selectAllFromProduct(ModelMap modelMap) {
-//        List<Product> productList = productService.selectAllFromProduct();
-//        String productListJSONArray = JSONArray.fromObject(productList).toString();
-//        modelMap.addAttribute("productList", productListJSONArray);
-//        return "admin_index";
-//    }
 
     /**
      * 分页查询产品全表

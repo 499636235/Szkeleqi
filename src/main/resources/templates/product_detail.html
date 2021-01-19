@@ -10,15 +10,17 @@
     <link href="/css/product_detail.css" rel="stylesheet" type="text/css"/>
     <!--JavaScript-->
     <script type="text/javascript">
+        /*
 
-        //JQuery的Ajax用法
-        $(function () {
-            console.log("/product/product_detail/" + [[${id}]]);
-            $.post("/product/product_detail/" + [[${id}]], function (data) {
-                $('#img1').attr("src", data);
-                console.log("加载图片成功！：" + data);
-            })
-        })
+                //JQuery的Ajax用法
+                $(function () {
+                    console.log("/product/product_detail/" + [[${id}]]);
+                    $.post("/product/product_detail/" + [[${id}]], function (data) {
+                        $('#img1').attr("src", data);
+                        console.log("加载图片成功！：" + data);
+                    })
+                })
+        */
 
 
     </script>
@@ -27,10 +29,126 @@
 <!--导航栏-->
 <th:block th:replace="common :: common_nav"></th:block>
 
+<div class="page met-showproduct pagetype1 animsition">
 
-<div id="divtest">
-    <img id="img1" src="/img/loading.gif" alt="图片加载中！">
+    <div class="met-showproduct-head">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="gallery" class="ad-gallery" data-x="600" data-y="400">
+                        <div class="ad-image-wrapper" style="height: 400px;">
+                            <div class="ad-image" style="width: 600px; height: 400px; top: 0px; left: 67px;">
+                                <img th:src="${product.picturePath}"
+                                    width="600" height="400">
+                                <p class="ad-image-description" style="width: 586px;">
+                                    <span th:text="${product.productName}">product name</span></p>
+                            </div>
+                            <img class="ad-loader" src="" style="display: none;">
+                            <div class="ad-next" style="height: 400px;">
+                                <div class="ad-next-image" style="opacity: 0.7; display: block;"></div>
+                            </div>
+                            <div class="ad-prev" style="height: 400px;">
+                                <div class="ad-prev-image" style="opacity: 0.7; display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="ad-controls"><p class="ad-info">1 / 1</p>
+                            <div class="ad-slideshow-controls"><span class="ad-slideshow-start">Start</span>
+                                <span class="ad-slideshow-stop">Stop</span>
+                                <span class="ad-slideshow-countdown" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="ad-nav">
+                            <div class="ad-back" style="opacity: 0.6;"></div>
+                            <div class="ad-thumbs">
+                                <ul class="ad-thumb-list" id="lightgallery" style="width: auto;">
+                                    <li>
+                                        <a href=""
+                                           class="ad-active">
+                                            <img th:src="${product.picturePath}"
+                                                 class="img-responsive" alt="Children's toys" style="opacity: 1;width: 60px;">
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="ad-forward" style="opacity: 0.6;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visible-xs-block visible-sm-block height-20"></div>
+                <div class="col-md-5 product-intro">
+                    <h1 th:text="${product.productName}">product name</h1>
+
+                    <p class="description"></p>
+
+                    <div class="tools"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="met-showproduct-body">
+        <div class="container">
+            <div class="row no-space">
+                <div class="col-md-9 product-content-body">
+                    <div class="row">
+
+                        <div class="panel product-detail">
+                            <div class="panel-body">
+                                <ul class="nav nav-tabs nav-tabs-line met-showproduct-navtabs affix-nav">
+                                    <li class="active"><a data-toggle="tab" href="#product-details"
+                                                          data-get="product-details">详细信息</a></li>
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane met-editor lazyload clearfix animation-fade active"
+                                         id="product-details">
+                                        <div class="editorlightgallery">
+                                            <div>
+                                                <div class="lg-item-box" style="text-align: center;">
+                                                    <img class="imgloading"
+                                                         alt=""
+                                                         th:src="${product.picturePath}"
+                                                         style="display: inline;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--右侧开始-->
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="panel product-hot">
+                            <div class="panel-body">
+                                <h4 class="example-title"></h4>
+                                <div class="row">
+                                    <!--string(7) "product"
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--右侧结束-->
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<!--<div id="divtest">-->
+<!--    <img id="img1" src="/img/loading.gif" alt="图片加载中！">-->
+<!--</div>-->
+
 
 <div>
 

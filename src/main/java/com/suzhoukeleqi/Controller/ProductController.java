@@ -1,8 +1,10 @@
 package com.suzhoukeleqi.Controller;
 
 import com.suzhoukeleqi.Service.ProductService;
-import com.suzhoukeleqi.entity.*;
-import net.sf.json.JSONArray;
+import com.suzhoukeleqi.entity.PageRequest;
+import com.suzhoukeleqi.entity.PageResult;
+import com.suzhoukeleqi.entity.Product;
+import com.suzhoukeleqi.entity.ProductListItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,8 @@ public class ProductController {
     @RequestMapping("/product/{id}")
     public String goToProductDetail(@PathVariable int id, Model model) {
         commonModelOperation(model);
-        model.addAttribute("id", id);
+        Product product = productService.selectProductById(id);
+        model.addAttribute("product", product);
         return "product_detail";
     }
 
@@ -50,21 +53,6 @@ public class ProductController {
     public String GetProductDetail(@PathVariable int id, Model model) {
         Product product = productService.selectProductById(id);
         return product.getPicturePath();
-    }
-
-    /**
-     * 查询全部产品
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping("/product/all")
-    public String selectAllProducts(Model model) {
-        commonModelOperation(model);
-        List<ProductListItem> productList = productService.selectAllProducts();
-        String productListJSONArray = JSONArray.fromObject(productList).toString();
-        model.addAttribute("productList", productListJSONArray);
-        return "product";
     }
 
     /**
@@ -88,6 +76,29 @@ public class ProductController {
         model.addAttribute("totalPages", pageResult.getTotalPages());
         model.addAttribute("totalSize", pageResult.getTotalSize());
         return "product";
+    }
+
+    /**
+     * 分页查询全部产品
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/product/all/ajax/{pageNum}/{pageSize}")
+    public String selectPagesFromProductAjax(PageRequest pageRequest, Model model) {
+        commonModelOperation(model);
+        model.addAttribute("path", "/product/all/ajax/");
+
+        PageResult pageResult = productService.selectAllProductsPages(pageRequest);
+        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
+//        String productListJSONArray = JSONArray.fromObject(productList).toString();
+//        model.addAttribute("productListJSONArray", productListJSONArray);
+        model.addAttribute("productList", productList);
+        model.addAttribute("pageNum", pageResult.getPageNum());
+        model.addAttribute("pageSize", pageResult.getPageSize());
+        model.addAttribute("totalPages", pageResult.getTotalPages());
+        model.addAttribute("totalSize", pageResult.getTotalSize());
+        return "product::reflash";
     }
 
     /**
