@@ -32,20 +32,39 @@ $(function () {
     */
 
 
+
 });
 
 function diyPageSize() {
-$("#diya").attr('href',"/product/all/" + "1" + "/" + $("#diyPageSize").val());
+    // $("#diya").attr('href', "/product/all/" + "1" + "/" + $("#diyPageSize").val());
+    url="/product/all/picture_list_ul/" + "1" + "/" + $("#diyPageSize").val();
+    $("#picture_list_div").load(url);
+    url="/product/all/pager_ul/" + "1" + "/" + $("#diyPageSize").val();
+    $("#pager_div").load(url);
 }
 
 function test() {
+    /*
 
-    $.post(
+        url="/product/all/ajax/1/8";
+        $("#picture_list_div").load(url);
+    */
+
+    /*$.post(
         "/product/all/ajax/1/8",
         "",
         function (data) {
             console.log(data);
-            $("#reflash_li").html(data);
+            $("#picture_list_div").html(data);
         }
-    )
+    )*/
+}
+
+function page(i) {
+
+    // console.log(i);
+    url="/product/all/picture_list_ul/" + i + "/" + $("#diyPageSize").val();
+    $("#picture_list_div").load(url);
+    url="/product/all/pager_ul/" + i + "/" + $("#diyPageSize").val();
+    $("#pager_div").load(url);
 }

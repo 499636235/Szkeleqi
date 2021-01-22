@@ -4,17 +4,18 @@
 <th:block th:replace="common :: common_link"></th:block>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         // $("#bt1").click(function(){
         //
         //     $("#dropdownMenu1").dropdown('toggle');
         // });
-        $('.btn').mouseover(function(){
+        $('.btn').mouseover(function () {
             $(this).find('li').show();
         });
-        $('.btn').mouseout(function(){
+        $('.btn').mouseout(function () {
             $(this).find('li').hide();
         });
+
         // $("#dropdownMenu1").mouseover(function(){
         //     alert("!");
         //     $("#dropdownMenu1").show();
@@ -23,15 +24,25 @@
 
 
     function test() {
+        /*
+                //方法1
+                url="/product/all/ajax/1/8";
+                $("#div111").load(url);
 
+
+                */
+
+        //方法2
         $.post(
             "/testajax",
             "",
             function (data) {
                 console.log(data);
-                $("#refalsh").html(data);
+                $("#div111").html(data);
             }
         )
+
+
     }
 
 </script>
@@ -108,7 +119,9 @@
 
 <p>两年后将会是 <span th:text="2020 + 2">1902</span>.</p>
 <span th:text="'欢迎您:' + '!'"></span>
+
 <span th:text="bbbb"></span>
+
 
 <script th:inline="javascript">
     const user = /*[[${msg}]]*/ {};
@@ -118,7 +131,8 @@
 </script>
 
 <button onclick="test()">哈哈</button>
-<span id="refalsh" th:fragment="reflash" th:text="${msg}"></span>
-
+<div id="div111">
+    <span th:fragment="reflash" th:text="${msg}"></span>
+</div>
 </body>
 </html>

@@ -79,13 +79,13 @@ public class ProductController {
     }
 
     /**
-     * 分页查询全部产品
+     * 异步 分页查询全部产品
      *
      * @param model
      * @return
      */
-    @RequestMapping("/product/all/ajax/{pageNum}/{pageSize}")
-    public String selectPagesFromProductAjax(PageRequest pageRequest, Model model) {
+    @RequestMapping("/product/all/{fragment}/{pageNum}/{pageSize}")
+    public String selectPagesFromProductAjax(@PathVariable String fragment, PageRequest pageRequest, Model model) {
         commonModelOperation(model);
         model.addAttribute("path", "/product/all/ajax/");
 
@@ -98,7 +98,7 @@ public class ProductController {
         model.addAttribute("pageSize", pageResult.getPageSize());
         model.addAttribute("totalPages", pageResult.getTotalPages());
         model.addAttribute("totalSize", pageResult.getTotalSize());
-        return "product::reflash";
+        return "common::" + fragment;
     }
 
     /**

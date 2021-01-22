@@ -126,11 +126,9 @@
             <h3>产品展示</h3>
             <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
         </div>
-        <div class="picture-list">
-            <ul id="product_ul" class="blocks blocks-xs-2 blocks-md-4">
-
-                <li id="reflash_li" th:fragment="reflash" th:each="p:${productList}" data-plugin=\"appear\" data-animate=\"slide-bottom\"
-                    class=\"animation-slide-bottom\">
+        <div id="picture_list_div" class="picture-list">
+            <ul th:fragment="picture_list_ul" class="blocks blocks-xs-2 blocks-md-4">
+                <li th:each="p:${productList}">
                     <a th:href="@{ '/product/' + ${p.productId} }">
                         <p>
                             <img th:src="@{ ${p.picturePath} }" th:alt="${p.productName}" style="display:inline;">
@@ -144,12 +142,11 @@
         </div>
 
 
-
     </div>
 
 
     <!-- diy 分页 -->
-    <form class="form-inline" th:if="${pageNum!=null?true:false}">
+    <div class="form-inline" th:if="${pageNum!=null?true:false}">
         <div class="form-group">
             <span>每页显示</span>
             <input id="diyPageSize" type="text" class="form-control" placeholder="xxx" th:value="${pageSize}"
@@ -157,7 +154,7 @@
             <span>个项目</span>
         </div>
         <a id="diya" class="btn btn-default" onclick="diyPageSize()">重新分页</a>
-    </form>
+    </div>
 
 
     <!-- 分页 按钮组 -->
@@ -165,25 +162,49 @@
 
 </div>
 
+<!-- 分页 按钮组1 -->
+<div id="pager_div1" th:fragment="common_pager1">
+    <ul th:fragment="pager_ul1" class="pagination" th:if="${pageNum!=null?true:false}">
+        <!--    <li>-->
+        <!--        <a onclick="test()">test</a>-->
+        <!--    </li>-->
+
+        <li>
+            <a th:if="${pageNum} gt 1" th:href="@{ ${path} + ${pageNum - 1} + '/' + ${pageSize} }">上一页</a>
+            <span th:if="${pageNum} lt 2">上一页</span>
+        </li>
+        <li th:each="i:${#numbers.sequence(1,totalPages)}">
+            <a th:href="@{ ${path} + ${i} + '/' + ${pageSize} }" th:text="${i}">xxx</a>
+        </li>
+        <li>
+            <a th:if="${pageNum} lt ${totalPages}" th:href="@{ ${path} + ${pageNum + 1}+'/' + ${pageSize} }">下一页</a>
+            <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
+        </li>
+    </ul>
+</div>
+
 <!-- 分页 按钮组 -->
-<ul th:fragment="common_pager" class="pagination" th:if="${pageNum!=null?true:false}">
-    <li>
-        <a onclick="test()">test</a>
-    </li>
+<div id="pager_div" th:fragment="common_pager">
+    <ul th:fragment="pager_ul" class="pagination" th:if="${pageNum!=null?true:false}">
+        <!--    <li>-->
+        <!--        <a onclick="test()">test</a>-->
+        <!--    </li>-->
 
-    <li>
-        <a th:if="${pageNum} gt 1" th:href="@{ ${path} + ${pageNum - 1} + '/' + ${pageSize} }">上一页</a>
-        <span th:if="${pageNum} lt 2">上一页</span>
-    </li>
-    <li th:each="i:${#numbers.sequence(1,totalPages)}">
-        <a th:href="@{ ${path} + ${i} + '/' + ${pageSize} }" th:text="${i}">xxx</a>
-    </li>
-    <li>
-        <a th:if="${pageNum} lt ${totalPages}" th:href="@{ ${path} + ${pageNum + 1}+'/' + ${pageSize} }">下一页</a>
-        <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
-    </li>
-</ul>
-
+        <li>
+            <a th:if="${pageNum} gt 1" th:onclick="'page(' + ${pageNum - 1} + ')'" th:name="pageup"
+               href="#pageup">上一页</a>
+            <span th:if="${pageNum} lt 2">上一页</span>
+        </li>
+        <li th:each="i:${#numbers.sequence(1,totalPages)}">
+            <a th:text="${i}" onclick="page(this.text)" th:name="${i}" th:href="@{ '#' + ${i} }">xxx</a>
+        </li>
+        <li>
+            <a th:if="${pageNum} lt ${totalPages}" th:onclick="'page(' + ${pageNum + 1} + ')'" th:name="pagedown"
+               href="#pagedown">下一页</a>
+            <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
+        </li>
+    </ul>
+</div>
 
 <!-- 页脚 -->
 <div th:fragment="common_footer" class="footer">
