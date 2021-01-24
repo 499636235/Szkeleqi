@@ -32,15 +32,18 @@ $(function () {
     */
 
 
-
 });
 
 function diyPageSize() {
     // $("#diya").attr('href', "/product/all/" + "1" + "/" + $("#diyPageSize").val());
-    url="/product/all/picture_list_ul/" + "1" + "/" + $("#diyPageSize").val();
-    $("#picture_list_div").load(url);
-    url="/product/all/pager_ul/" + "1" + "/" + $("#diyPageSize").val();
-    $("#pager_div").load(url);
+
+    // url = path + "picture_list_ul/" + "1" + "/" + $("#diyPageSize").val();
+    // $("#picture_list_div").load(url);
+    // url = path + "pager_ul/" + "1" + "/" + $("#diyPageSize").val();
+    // $("#pager_div").load(url);
+
+    url = path + "picbox_div/" + "1" + "/" + $("#diyPageSize").val();
+    $("#picbox_div").load(url);
 }
 
 function test() {
@@ -60,11 +63,16 @@ function test() {
     )*/
 }
 
-function page(i) {
+function page(i,pagesize) {
 
     // console.log(i);
-    url="/product/all/picture_list_ul/" + i + "/" + $("#diyPageSize").val();
-    $("#picture_list_div").load(url);
-    url="/product/all/pager_ul/" + i + "/" + $("#diyPageSize").val();
-    $("#pager_div").load(url);
+    // console.log(pagesize);
+    // url = path + "picture_list_ul/" + i + "/" + pagesize;
+    // $("#picture_list_div").load(url);
+    // url = path + "pager_ul/" + i + "/" + pagesize;
+    // $("#pager_div").load(url);
+
+    url = path + "picbox_div/" + i + "/" + pagesize;
+    $("#picbox_div").load(url);
+
 }

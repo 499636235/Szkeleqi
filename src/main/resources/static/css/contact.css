@@ -1,0 +1,13 @@
+.met-editor {
+    background: #fff;
+    padding: 30px;
+    line-height: 2;
+    font-size: 14px;
+    font-weight: 300;
+    color: #222;
+    font-family: '微软雅黑';
+}
+
+.met-editor p {
+    margin-bottom: 16px;
+}

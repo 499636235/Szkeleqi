@@ -53,11 +53,11 @@
                         产品中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/product/all/1/8">全部产品</a></li>
-                        <li><a href="/product/class1/Neck pillow/1/8">颈枕</a></li>
-                        <li><a href="/product/class1/Back cushion/1/8">靠垫</a></li>
-                        <li><a href="/product/class1/Sofa cushion/1/8">沙发坐垫</a></li>
-                        <li><a href="/product/class1/Toy/1/8">玩具</a></li>
+                        <li><a href="/product/all/0/0/1/8">全部产品</a></li>
+                        <li><a href="/product/class1/1/0/1/8">颈枕</a></li>
+                        <li><a href="/product/class1/2/0/1/8">靠垫</a></li>
+                        <li><a href="/product/class1/3/0/1/8">沙发坐垫</a></li>
+                        <li><a href="/product/class1/4/0/1/8">玩具</a></li>
                     </ul>
                 </li>
                 <li id="news" class="dropdown" th:classappend=" ${pagename} == 'news' ? 'active' : '' ">
@@ -120,55 +120,57 @@
 </div>
 
 <!-- 缩略图片列表 -->
-<div th:fragment="common_picbox" class="picture-box">
-    <div th:fragment="common_picbox_container" class="container-fluid">
-        <div class="title-box">
-            <h3>产品展示</h3>
-            <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
+<div id="picbox_div" th:fragment="common_picbox">
+    <div th:fragment="picbox_div" class="picture-box">
+        <div class="container-fluid">
+            <div class="title-box">
+                <h3>产品展示</h3>
+                <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
+            </div>
+            <div id="picture_list_div" class="picture-list">
+                <ul th:fragment="picture_list_ul" class="blocks blocks-xs-2 blocks-md-4">
+                    <li th:each="p:${productList}">
+                        <a th:href="@{ '/product/' + ${p.productId} }"
+                           onclick="window.open(this.href);return false;">
+                            <p>
+
+                                <img class="img-responsive"
+                                     th:src="@{ ${p.picturePath} }"
+                                     th:alt="${p.productName}"
+                                     style="display:inline;">
+
+                            </p>
+                            <span th:text="${p.productName}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div id="picture_list_div" class="picture-list">
-            <ul th:fragment="picture_list_ul" class="blocks blocks-xs-2 blocks-md-4">
-                <li th:each="p:${productList}">
-                    <a th:href="@{ '/product/' + ${p.productId} }">
-                        <p>
-                            <img th:src="@{ ${p.picturePath} }" th:alt="${p.productName}" style="display:inline;">
-                        </p>
-                        <span th:text="${p.productName}"></span>
-                    </a>
-                </li>
 
-            </ul>
 
+        <!-- diy 分页 -->
+        <div class="form-inline" th:if="${pageNum!=null?true:false}">
+            <div class="form-group">
+                <span>当前页数</span>
+                <span th:text="${pageNum}"></span>
+                <span>，每页显示</span>
+                <input id="diyPageSize" type="text" class="form-control" placeholder="xxx" th:value="${pageSize}"
+                       style="width: 40px">
+                <span>个项目</span>
+            </div>
+            <a id="diya" class="btn btn-default" onclick="diyPageSize()">重新分页</a>
         </div>
 
+
+        <!-- 分页 按钮组 -->
+        <th:block th:replace="common :: common_pager"></th:block>
 
     </div>
-
-
-    <!-- diy 分页 -->
-    <div class="form-inline" th:if="${pageNum!=null?true:false}">
-        <div class="form-group">
-            <span>每页显示</span>
-            <input id="diyPageSize" type="text" class="form-control" placeholder="xxx" th:value="${pageSize}"
-                   style="width: 40px">
-            <span>个项目</span>
-        </div>
-        <a id="diya" class="btn btn-default" onclick="diyPageSize()">重新分页</a>
-    </div>
-
-
-    <!-- 分页 按钮组 -->
-    <th:block th:replace="common :: common_pager"></th:block>
-
 </div>
 
 <!-- 分页 按钮组1 -->
 <div id="pager_div1" th:fragment="common_pager1">
     <ul th:fragment="pager_ul1" class="pagination" th:if="${pageNum!=null?true:false}">
-        <!--    <li>-->
-        <!--        <a onclick="test()">test</a>-->
-        <!--    </li>-->
-
         <li>
             <a th:if="${pageNum} gt 1" th:href="@{ ${path} + ${pageNum - 1} + '/' + ${pageSize} }">上一页</a>
             <span th:if="${pageNum} lt 2">上一页</span>
@@ -186,21 +188,15 @@
 <!-- 分页 按钮组 -->
 <div id="pager_div" th:fragment="common_pager">
     <ul th:fragment="pager_ul" class="pagination" th:if="${pageNum!=null?true:false}">
-        <!--    <li>-->
-        <!--        <a onclick="test()">test</a>-->
-        <!--    </li>-->
-
         <li>
-            <a th:if="${pageNum} gt 1" th:onclick="'page(' + ${pageNum - 1} + ')'" th:name="pageup"
-               href="#pageup">上一页</a>
+            <a th:if="${pageNum} gt 1" th:onclick=" 'page(' + ${pageNum - 1} + ',' + ${pageSize} + ')' ">上一页</a>
             <span th:if="${pageNum} lt 2">上一页</span>
         </li>
         <li th:each="i:${#numbers.sequence(1,totalPages)}">
-            <a th:text="${i}" onclick="page(this.text)" th:name="${i}" th:href="@{ '#' + ${i} }">xxx</a>
+            <a th:text="${i}" th:onclick=" 'page('+ ${i} + ',' + ${pageSize} + ')' ">xxx</a>
         </li>
         <li>
-            <a th:if="${pageNum} lt ${totalPages}" th:onclick="'page(' + ${pageNum + 1} + ')'" th:name="pagedown"
-               href="#pagedown">下一页</a>
+            <a th:if="${pageNum} lt ${totalPages}" th:onclick=" 'page(' + ${pageNum + 1} + ',' + ${pageSize} + ')' ">下一页</a>
             <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
         </li>
     </ul>

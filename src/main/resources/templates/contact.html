@@ -6,15 +6,43 @@
     <!-- thymeleaf代码块功能 导入共用link -->
     <th:block th:replace="common :: common_link"></th:block>
     <!-- 导入样式表 -->
-
+    <link href="/css/contact.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <!-- 导航栏 -->
 <th:block th:replace="common :: common_nav"></th:block>
 
-<!-- 缩略图片列表 -->
-<th:block th:replace="common :: common_picbox"></th:block>
+<div class="container" style="min-height: 771px">
+    <div class="row">
+        <div class="met-editor">
+            <p style="text-align: center;">
+                <strong>xx科乐奇xx公司</strong>
+            </p>
+            <p><br></p>
+            <p style="text-align: center;">
+                <em class="fa fa-map-marker"></em>
+                地址：苏x市xx区xx镇xx路xxx号</p>
+            <p style="text-align: center;">
+                联系人：x经理
+                <br>
+            </p>
+            <p style="text-align: center;">
+                <em class="fa fa-print"></em>
+                手机：xxx-xxxx-xxxx
+            </p>
+            <p style="text-align: center;">
+                <em class="fa fa-envelope"></em>
+                邮箱：xxx@xxxxx.com
+            </p>
+            <p style="text-align: center;">
+                <em class="fa fa-phone"></em>
+                电话：xxxx-xxxxxxxx
+            </p>
+
+        </div>
+    </div>
+</div>
 
 <!-- 页脚 -->
 <th:block th:replace="common :: common_footer"></th:block>

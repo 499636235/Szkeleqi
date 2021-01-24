@@ -1,4 +1,4 @@
-CREATE TABLE `picture_list_index` (
+CREATE TABLE `picturelistindex` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `listid` int(11) NOT NULL COMMENT '图片列表id',
   `listname` varchar(255) COMMENT '图片列表名',
@@ -23,6 +23,19 @@ CREATE TABLE `product` (
   `updatedate` datetime NOT NULL COMMENT '数据更新日期',
   PRIMARY KEY (`productid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `code` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `codetype` varchar(255) NOT NULL COMMENT '代码类型',
+  `codename` varchar(255) NOT NULL COMMENT '代码名称',
+  `code` varchar(255) NOT NULL COMMENT '代码',
+  `createdate` datetime NOT NULL COMMENT '数据创建日期',
+  `updatedate` datetime NOT NULL COMMENT '数据更新日期',
+  PRIMARY KEY (`id`,`codetype`,`codename`,`code`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 CREATE TABLE `user` (

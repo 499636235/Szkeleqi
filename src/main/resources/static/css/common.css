@@ -1,12 +1,12 @@
 /* 全体 */
 body {
-    padding-top: 70px;
+    padding-top: 50px;
     /*padding-bottom:70px;*/
 }
 
 
 /* 导航栏 */
-#nav_ul li{
+#nav_ul li {
     margin-right: 20px;
 }
 
@@ -14,7 +14,7 @@ body {
 /* 轮播 */
 div#carousel-example-generic {
     width: 100%;
-    margin: 0 auto;
+    margin: 30px auto;
 }
 
 div.item img {
@@ -48,16 +48,10 @@ div.item img {
 
 /* 缩略图片列表 */
 .picture-box {
-    padding: 60px 0 100px 0;
+    padding: 30px 0 30px 0;
     text-align: center;
 }
 
-.container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 .title-box p {
     display: block;
@@ -70,14 +64,15 @@ div.item img {
 }
 
 .picture-list {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.picture-box img {
+
+/*.picture-box img {
     width: 340px;
     height: 340px;
-}
+}*/
 
 .blocks, [class*="blocks-"] {
     padding: 0;
@@ -103,14 +98,24 @@ div.item img {
 }
 
 
+/* 分页 */
+.pagination > li > a {
+    cursor: pointer;
+}
+
+.pagination > li > span {
+    cursor: not-allowed;
+}
+
+
 /* 页脚 */
-.footer{
+.footer {
     position: relative;
-    height: 40px;
+    height: 116px;
 
 }
 
-.footer div{
+.footer div {
     background: #17171a;
     line-height: 2;
     padding: 20px 0;

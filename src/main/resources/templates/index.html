@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
 
-    <!--thymeleaf代码块功能 导入共用link-->
+    <!-- thymeleaf代码块功能 导入共用link -->
     <th:block th:replace="common :: common_link"></th:block>
-    <!--导入样式表-->
+    <!-- 导入样式表 -->
     <link href="/css/index.css" rel="stylesheet" type="text/css"/>
-    <!--JavaScript-->
+    <!-- JavaScript -->
     <!-- 定义全局变量传入js文件中 -->
     <script type="text/javascript">
         var indexProductList = "[[${indexProductList}]]";
@@ -18,25 +18,34 @@
     <script src="/js/index.js" type="text/javascript"></script>
 </head>
 <body>
-<div>
-    <!-- 导航栏 -->
-    <th:block th:replace="common :: common_nav"></th:block>
 
-    <!-- 轮播 -->
-    <th:block th:replace="common :: common_carousel"></th:block>
+<!-- 导航栏 -->
+<th:block th:replace="common :: common_nav"></th:block>
 
-    <!-- 缩略图片列表 -->
-    <th:block th:replace="common :: common_picbox"></th:block>
+<div class="container-fluid" style="background: #f6f6f6;">
+    <div class="row clearfix">
+        <div class="col-md-2 column"></div>
+        <div class="col-md-8 column">
 
-    <div style="padding: 60px 0 100px 0;text-align: center;">
-        <div class="about-content">
-            <h3>品牌故事</h3>
-            <p>打造工艺品制造行业最中国的品牌，是我们始终追求且奋斗的目标。</p>
-            <p>作为工艺品设计品牌，我们创造源于20多年传统高品质的要求和行业经验，我们专注于功能和现代设计相结合,创造适合日常使用的产品。</p>
-            <p>科乐奇能够创造一个独特的和个人通过提供大量各式各样的不同面料，可爱的图案和美丽的色彩，每个集合包含大量可能的组合，这使得很容易创建一个个人的和独特的外观。</p>
+            <!-- 轮播 -->
+            <th:block th:replace="common :: common_carousel"></th:block>
+
+            <!-- 缩略图片列表 -->
+            <th:block th:replace="common :: common_picbox"></th:block>
+
+            <div style="padding: 60px 0 100px 0;text-align: center;">
+                <div class="about-content">
+                    <h3>品牌故事</h3>
+                    <p>打造工艺品制造行业最中国的品牌，是我们始终追求且奋斗的目标。</p>
+                    <p>作为工艺品设计品牌，我们创造源于20多年传统高品质的要求和行业经验，我们专注于功能和现代设计相结合,创造适合日常使用的产品。</p>
+                    <p>科乐奇能够创造一个独特的和个人通过提供大量各式各样的不同面料，可爱的图案和美丽的色彩，每个集合包含大量可能的组合，这使得很容易创建一个个人的和独特的外观。</p>
+                </div>
+            </div>
+
         </div>
+        <div class="col-md-2 column"></div>
     </div>
-
+</div>
 
 <!--    xx科乐奇xx公司-->
 
@@ -46,16 +55,13 @@
 
 <!--    手机：xxx-xxxx-xxxx-->
 
-<!--    邮箱：wuxf@szkeleqi.com-->
+<!--    邮箱：xxx@xxxxx.com-->
 
 <!--    电话：xxxx-xxxxxxxx-->
 
 <!--    邮编：xxxxxx-->
 
-    <!--页脚-->
-    <th:block th:replace="common :: common_footer"></th:block>
-
-
-</div>
+<!--页脚-->
+<th:block th:replace="common :: common_footer"></th:block>
 </body>
 </html>

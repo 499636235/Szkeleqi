@@ -61,22 +61,22 @@ public class ProductController {
      * @param model
      * @return
      */
-    @RequestMapping("/product/all/{pageNum}/{pageSize}")
-    public String selectPagesFromProduct(PageRequest pageRequest, Model model) {
-        commonModelOperation(model);
-        model.addAttribute("path", "/product/all/");
-
-        PageResult pageResult = productService.selectAllProductsPages(pageRequest);
-        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
-//        String productListJSONArray = JSONArray.fromObject(productList).toString();
-//        model.addAttribute("productListJSONArray", productListJSONArray);
-        model.addAttribute("productList", productList);
-        model.addAttribute("pageNum", pageResult.getPageNum());
-        model.addAttribute("pageSize", pageResult.getPageSize());
-        model.addAttribute("totalPages", pageResult.getTotalPages());
-        model.addAttribute("totalSize", pageResult.getTotalSize());
-        return "product";
-    }
+//    @RequestMapping("/product/all/{pageNum}/{pageSize}")
+//    public String selectPagesFromProduct(PageRequest pageRequest, Model model) {
+//        commonModelOperation(model);
+//        model.addAttribute("path", "/product/all/");
+//
+//        PageResult pageResult = productService.selectAllProductsPages(pageRequest);
+//        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
+////        String productListJSONArray = JSONArray.fromObject(productList).toString();
+////        model.addAttribute("productListJSONArray", productListJSONArray);
+//        model.addAttribute("productList", productList);
+//        model.addAttribute("pageNum", pageResult.getPageNum());
+//        model.addAttribute("pageSize", pageResult.getPageSize());
+//        model.addAttribute("totalPages", pageResult.getTotalPages());
+//        model.addAttribute("totalSize", pageResult.getTotalSize());
+//        return "product";
+//    }
 
     /**
      * 异步 分页查询全部产品
@@ -84,66 +84,49 @@ public class ProductController {
      * @param model
      * @return
      */
-    @RequestMapping("/product/all/{fragment}/{pageNum}/{pageSize}")
-    public String selectPagesFromProductAjax(@PathVariable String fragment, PageRequest pageRequest, Model model) {
+    @RequestMapping("/product/{typeName}/{typeValue}/{fragment}/{pageNum}/{pageSize}")
+    public String selectPagesFromProductAjax(PageRequest pageRequest, Model model) {
         commonModelOperation(model);
-        model.addAttribute("path", "/product/all/ajax/");
 
-        PageResult pageResult = productService.selectAllProductsPages(pageRequest);
-        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
-//        String productListJSONArray = JSONArray.fromObject(productList).toString();
-//        model.addAttribute("productListJSONArray", productListJSONArray);
-        model.addAttribute("productList", productList);
-        model.addAttribute("pageNum", pageResult.getPageNum());
-        model.addAttribute("pageSize", pageResult.getPageSize());
-        model.addAttribute("totalPages", pageResult.getTotalPages());
-        model.addAttribute("totalSize", pageResult.getTotalSize());
-        return "common::" + fragment;
-    }
+        String typeName = pageRequest.getTypeName();
+        String typeValue = pageRequest.getTypeValue();
+        String fragment = pageRequest.getFragment();
 
-    /**
-     * 根据第一种大类查询产品
-     *
-     * @param class1
-     * @param model
-     * @return
-     */
-    @RequestMapping("/product/class1/{class1}/{pageNum}/{pageSize}")
-    public String selectProductListByclass1(PageRequest pageRequest, @PathVariable String class1, Model model) {
-        commonModelOperation(model);
-        model.addAttribute("path", "/product/class1/" + class1 + "/");
+        PageResult pageResult = null;
+        switch (typeName) {
+            case "all":
+                pageResult = productService.selectAllProductsPages(pageRequest);
+                break;
+            case "class1":
+                pageResult = productService.selectProductListByclass1(pageRequest, typeValue);
+                break;
+            case "class2":
+                pageResult = productService.selectProductListByclass2(pageRequest, typeValue);
+                break;
+            default:
+                break;
+        }
+        if (pageRequest == null) {
+            return "error";
+        }
 
-        PageResult pageResult = productService.selectProductListByclass1(pageRequest, class1);
-        List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
-        model.addAttribute("productList", productList);
-        model.addAttribute("pageNum", pageResult.getPageNum());
-        model.addAttribute("pageSize", pageResult.getPageSize());
-        model.addAttribute("totalPages", pageResult.getTotalPages());
-        model.addAttribute("totalSize", pageResult.getTotalSize());
-        return "product";
-    }
+        // 拼接用的路径前缀
+        model.addAttribute("path", "/product/" + typeName + "/" + typeValue + "/");
 
-    /**
-     * 根据第二种大类查询产品
-     *
-     * @param class2
-     * @param model
-     * @return
-     */
-    @RequestMapping("/product/class2/{class2}/{pageNum}/{pageSize}")
-    public String selectProductListByclass2(PageRequest pageRequest, @PathVariable String class2, Model model) {
-        commonModelOperation(model);
-        model.addAttribute("path", "/product/class2/" + class2 + "/");
-
-        PageResult pageResult = productService.selectProductListByclass2(pageRequest, class2);
         List<ProductListItem> productList = (List<ProductListItem>) pageResult.getContent();
         model.addAttribute("productList", productList);
         model.addAttribute("pageNum", pageResult.getPageNum());
         model.addAttribute("pageSize", pageResult.getPageSize());
         model.addAttribute("totalPages", pageResult.getTotalPages());
         model.addAttribute("totalSize", pageResult.getTotalSize());
-        return "product";
+
+        if (fragment.equals("0")) {
+            return "product";
+        } else {
+            return "common::" + fragment;
+        }
     }
+
 
     /**
      * 共同 Model 操作
