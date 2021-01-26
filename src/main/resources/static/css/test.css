@@ -1,14 +1,32 @@
-*{
-    margin:0px;
-    padding:0px;
+/*
+* {
+    margin: 0px;
+    padding: 0px;
 }
-ul{
+
+ul {
     display: inline-block;
     list-style: none;
 }
-li{
+
+li {
     display: none;
 }
-.btn{
-    float: left;				//顶端对齐 display: inline-block;(默认居中对齐)
+
+.btn {
+    float: left;
+ !*顶端对齐 display: inline-block;*!
+!*(默认居中对齐)*!
+}
+*/
+body {
+    position: relative;
+}
+
+@media screen and (max-width: 700px) {
+    #div_1{
+        background: #960500;
+        width: 100px;
+        height: 100px;
+    }
 }

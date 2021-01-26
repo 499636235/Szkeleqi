@@ -74,6 +74,22 @@ div.item img {
     height: 340px;
 }*/
 
+#picture_list_ul {
+    padding: 0;
+    margin: 0 -15px;
+    list-style: none;
+}
+
+#picture_list_ul li {
+    position: relative;
+    float: left;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 22px;
+}
+
+
 .blocks, [class*="blocks-"] {
     padding: 0;
     margin: 0 -15px;

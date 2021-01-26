@@ -9,6 +9,10 @@
         <!-- 共用的title -->
         <title>苏州科乐奇</title>
 
+        <!-- META -->
+        <!-- 优化移动端 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
         <!-- 共用的jQuery,css,js -->
         <!--        上线以后使用 min 可以提高响应速度-->
         <!--        <script src="/webjars/jquery/1.9.1/jquery.min.js"></script>-->
@@ -36,11 +40,16 @@
 
 <!-- 导航栏 -->
 <nav th:fragment="common_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="container">
         <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">苏州科乐奇</a>
         </div>
-        <div>
+        <div id="menu" class="collapse navbar-collapse">
             <ul id="nav_ul" class="nav navbar-nav navbar-right">
                 <li id="test"><a href="/nav/test" data-target="/test">测试</a></li>
 
@@ -127,9 +136,29 @@
                 <h3>产品展示</h3>
                 <p>梦的家园，爱的港湾，科乐奇为您打造温暖的世界！</p>
             </div>
-            <div id="picture_list_div" class="picture-list">
-                <ul th:fragment="picture_list_ul" class="blocks blocks-xs-2 blocks-md-4">
-                    <li th:each="p:${productList}">
+            <!--                        <div id="picture_list_div" class="picture-list">-->
+            <!--                            <ul th:fragment="picture_list_ul" class="blocks blocks-xs-2 blocks-md-4">-->
+            <!--                                <li th:each="p:${productList}">-->
+            <!--                                    <a th:href="@{ '/product/' + ${p.productId} }"-->
+            <!--                                       onclick="window.open(this.href);return false;">-->
+            <!--                                        <p>-->
+
+            <!--                                            <img class="img-responsive"-->
+            <!--                                                 th:src="@{ ${p.picturePath} }"-->
+            <!--                                                 th:alt="${p.productName}"-->
+            <!--                                                 style="display:inline;">-->
+
+            <!--                                        </p>-->
+            <!--                                        <span th:text="${p.productName}"></span>-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                            </ul>-->
+            <!--                        </div>-->
+
+
+            <div id="picture_list_div" class="picture-list row">
+                <ul id="picture_list_ul" th:fragment="picture_list_ul">
+                    <li th:each="p:${productList}" class="col-lg-3 col-sm-4 col-xs-6">
                         <a th:href="@{ '/product/' + ${p.productId} }"
                            onclick="window.open(this.href);return false;">
                             <p>
@@ -196,7 +225,8 @@
             <a th:text="${i}" th:onclick=" 'page('+ ${i} + ',' + ${pageSize} + ')' ">xxx</a>
         </li>
         <li>
-            <a th:if="${pageNum} lt ${totalPages}" th:onclick=" 'page(' + ${pageNum + 1} + ',' + ${pageSize} + ')' ">下一页</a>
+            <a th:if="${pageNum} lt ${totalPages}"
+               th:onclick=" 'page(' + ${pageNum + 1} + ',' + ${pageSize} + ')' ">下一页</a>
             <span th:if="${pageNum} gt ${totalPages - 1}">下一页</span>
         </li>
     </ul>
