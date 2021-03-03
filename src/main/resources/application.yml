@@ -6,6 +6,8 @@
 # 创建springboot: docker run -it --net=host --name szkeleqi -p 8186:8186 szkeleqi
 # 删除mysql容器: docker rm -f szkeleqi
 
+# 免费上传图片网站（可以不用将图片存储到本地） https://imgtu.com/
+
 server:
   #端口号
   port: 8186
