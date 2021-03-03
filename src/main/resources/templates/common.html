@@ -156,7 +156,7 @@
             <!--                        </div>-->
 
 
-            <div id="picture_list_div" class="picture-list row">
+            <div id="picture_list_div" name="picture_list_div" class="picture-list row">
                 <ul id="picture_list_ul" th:fragment="picture_list_ul">
                     <li th:each="p:${productList}" class="col-lg-3 col-sm-4 col-xs-6">
                         <a th:href="@{ '/product/' + ${p.productId} }"
@@ -215,14 +215,15 @@
 </div>
 
 <!-- 分页 按钮组 -->
-<div id="pager_div" th:fragment="common_pager">
+<div id="pager_div" name="pager_div" th:fragment="common_pager">
     <ul th:fragment="pager_ul" class="pagination" th:if="${pageNum!=null?true:false}">
         <li>
             <a th:if="${pageNum} gt 1" th:onclick=" 'page(' + ${pageNum - 1} + ',' + ${pageSize} + ')' ">上一页</a>
             <span th:if="${pageNum} lt 2">上一页</span>
         </li>
         <li th:each="i:${#numbers.sequence(1,totalPages)}">
-            <a th:text="${i}" th:onclick=" 'page('+ ${i} + ',' + ${pageSize} + ')' ">xxx</a>
+            <a th:text="${i}" th:onclick=" 'page('+ ${i} + ',' + ${pageSize} + ')' "
+               href="#pager_div">xxx</a>
         </li>
         <li>
             <a th:if="${pageNum} lt ${totalPages}"
@@ -236,7 +237,7 @@
 <div th:fragment="common_footer" class="footer">
     <div>
         <p>Copyright Suzhou keleqi arts and crafts co., LTD. 2021-2031</p>
-        <p><a href="#">技术支持：NIJIEYANG</a></p>
+        <p><a href="/admin">技术支持：NIJIEYANG</a></p>
     </div>
 </div>
 <!--<footer>-->

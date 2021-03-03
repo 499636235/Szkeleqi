@@ -115,6 +115,9 @@ div.item img {
 
 
 /* 分页 */
+#pager_div {
+    user-select: none;
+}
 .pagination > li > a {
     cursor: pointer;
 }
