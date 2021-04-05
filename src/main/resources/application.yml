@@ -1,10 +1,13 @@
 
 # 部署方法见: https://blog.csdn.net/zhangcc233/article/details/96706157
+# 启动docker的时候怎么把参数传递给docker里面的项目: https://blog.csdn.net/wsbgmofo/article/details/79173920
+
 # docker容器内时区相差8小时问题: https://blog.csdn.net/Jarbein/article/details/103631718?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control
 # 创建mysql容器: docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=njytzj6B mysql:5.5
 # 删除mysql容器: docker rm -f mysql
-# 创建springboot: docker run -it --net=host --name szkeleqi -p 8186:8186 szkeleqi
-# 删除mysql容器: docker rm -f szkeleqi
+# 创建springboot容器: docker build -t szkeleqi .
+# 运行springboot容器: docker run -e JAVA_PARAM1="-Djasypt.encryptor.password=1234567890" -it --net=host --name szkeleqi -p 8186:8186 szkeleqi
+# 删除springboot容器: docker rm -f szkeleqi
 
 # 免费上传图片网站（可以不用将图片存储到本地） https://imgtu.com/
 
@@ -22,11 +25,8 @@ info:
 # https://www.cnblogs.com/toutou/p/Jasypt.html
 # 密码提示：我和唐子gay牛逼
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/szklq?characterEncoding=utf-8&serverTimezone=GMT%2B8
-    username: ENC(qulENClCew1FZOjNP/Rw9w==)
-    password: ENC(oCYgc7ZLS28+ewutaAEd9K1bO7Wk+evj)
+  profiles:
+    active: dev
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
