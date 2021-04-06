@@ -2,4 +2,5 @@
 /target/
 /documents/~$数据库表结构.xlsx
 /src/main/resources/logs/config/*
+/src/main/resources/application-prd.yml
 /.idea/
