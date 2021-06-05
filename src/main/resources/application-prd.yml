@@ -1,0 +1,11 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://144.34.160.210:3306/szklq?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: ENC(qulENClCew1FZOjNP/Rw9w==)
+    password: ENC(oCYgc7ZLS28+ewutaAEd9K1bO7Wk+evj)
+
+server:
+  #端口号
+  port: 80
